@@ -1,0 +1,17 @@
+{
+  "name": "morgan-site",
+  "version": "1.0.0",
+  "description": "Morgan's Magic Garden local website",
+  "main": "index.js",
+  "scripts": {
+    "dev": "serve . -l 3001",
+    "start": "serve . -l 3001"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "serve": "^14.2.6"
+  }
+}
