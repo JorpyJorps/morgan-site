@@ -17,39 +17,84 @@
       <nav class="top-nav">
         <a class="brand-mark" href="/">🌸 Morgan's Magic Garden</a>
         <div class="nav-links">
-          <a class="nav-chip" href="/activities/patterns.html">Patterns</a>
+          <a class="nav-chip" href="/activities/letters.html">Letters</a>
           <a class="nav-chip" href="/activities/sticker-garden.html">Sticker Garden</a>
         </div>
       </nav>
 
-      <main class="activity-shell">
-        <section class="activity-banner">
+      <main class="activity-shell numbers-shell">
+        <section class="activity-banner numbers-banner">
           <div>
-            <p class="section-kicker">Unicorn Star Meadow</p>
+            <p class="numbers-kicker">Unicorn Star Meadow</p>
             <h1>Numbers</h1>
-            <p>
-              This path is ready for “Count the Stars,” a bright little meadow
-              for number recognition and counting adventures.
-            </p>
+            <p class="numbers-subtitle">Listen, count, and find the number.</p>
           </div>
           <div class="activity-emoji" aria-hidden="true">🦄⭐</div>
         </section>
 
-        <section class="placeholder-panel">
-          <h2>Coming soon</h2>
-          <p>
-            Future focus: numbers, counting, and happy little wins with stars and
-            unicorn sparkle.
-          </p>
-          <div class="tag-row" aria-label="Numbers plans">
-            <span class="tag">Star counting</span>
-            <span class="tag">Number matching</span>
-            <span class="tag">Simple progress wins</span>
+        <section class="numbers-status" aria-label="Numbers game progress">
+          <div class="numbers-levels" aria-label="Numbers levels">
+            <button class="level-chip is-active" id="numbers-level-one-button" type="button">Level 1</button>
+            <button class="level-chip" id="numbers-level-two-button" type="button">Level 2</button>
           </div>
-          <a class="button button-primary" href="/">Back to Garden Map</a>
+          <div class="numbers-badge">
+            <span class="numbers-badge-label">Round</span>
+            <strong id="numbers-round-label">1 / 8</strong>
+          </div>
+          <div class="numbers-badge">
+            <span class="numbers-badge-label">Stars</span>
+            <strong id="numbers-score-label">0</strong>
+          </div>
+        </section>
+
+        <section class="numbers-goal" aria-label="Today's goal">
+          <div class="numbers-goal-copy">
+            <span class="numbers-goal-kicker">Today's goal</span>
+            <strong>Fill the star path</strong>
+          </div>
+          <div class="numbers-progress" id="numbers-progress" aria-label="Numbers goal progress"></div>
+        </section>
+
+        <section class="numbers-board">
+          <div class="numbers-decor" aria-hidden="true">
+            <span class="numbers-cloud numbers-cloud-left">☁️</span>
+            <span class="numbers-cloud numbers-cloud-right">☁️</span>
+            <span class="numbers-sparkle numbers-sparkle-one">✦</span>
+            <span class="numbers-sparkle numbers-sparkle-two">✦</span>
+          </div>
+
+          <div class="numbers-prompt-shell">
+            <div class="numbers-prompt-label" id="numbers-prompt-label">Listen and find</div>
+            <button class="numbers-prompt" id="numbers-prompt" type="button" aria-label="Hear the number prompt">
+              ⭐
+            </button>
+          </div>
+
+          <div class="numbers-count-board" id="numbers-count-board" hidden aria-label="Things to count"></div>
+
+          <div class="numbers-feedback" id="numbers-feedback">
+            <span class="numbers-feedback-icon" id="numbers-feedback-icon" aria-hidden="true">✨</span>
+            <span id="numbers-feedback-text">Tap the matching number.</span>
+          </div>
+
+          <div class="numbers-options" id="numbers-options" aria-label="Number choices"></div>
+        </section>
+
+        <section class="numbers-finish" id="numbers-finish" hidden>
+          <div class="numbers-finish-card">
+            <div class="numbers-finish-burst" aria-hidden="true">⭐ 🌈 ⭐ 💖 ⭐ 🌈 ⭐</div>
+            <h2>You counted them all!</h2>
+            <p id="numbers-finish-text">Morgan found every number.</p>
+            <div class="numbers-finish-actions">
+              <button class="button button-primary" id="numbers-play-again-button" type="button">Play Again</button>
+              <a class="button button-secondary" href="/">Garden Map</a>
+            </div>
+          </div>
         </section>
       </main>
     </div>
     <script src="/script.js"></script>
+    <script src="/activities/tracker.js"></script>
+    <script src="/activities/numbers.js"></script>
   </body>
 </html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Art Studio | Morgan's Magic Garden</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="theme-page-art">
+    <div class="page-shell">
+      <nav class="top-nav">
+        <a class="brand-mark" href="/">🌸 Morgan's Magic Garden</a>
+        <div class="nav-links">
+          <a class="nav-chip" href="/activities/memory-match.html">Memory Match</a>
+          <a class="nav-chip" href="/activities/sticker-garden.html">Sticker Garden</a>
+        </div>
+      </nav>
+
+      <main class="activity-shell art-shell">
+        <section class="activity-banner art-banner">
+          <div>
+            <p class="section-kicker">Rainbow Paint Room</p>
+            <h1>Art Studio</h1>
+            <p>Paint, stamp, and make silly pictures.</p>
+          </div>
+          <div class="activity-emoji" aria-hidden="true">🎨🌈</div>
+        </section>
+
+        <section class="art-toolbar" aria-label="Art tools">
+          <div class="art-tool-group art-tool-group-combo">
+            <div class="art-combo-row">
+              <div class="art-combo-section">
+                <span class="art-group-label">Shapes</span>
+                <div class="art-chip-row art-chip-row-tight" id="art-shape-row">
+                  <button class="art-chip" data-tool="line" type="button" aria-label="Line">／</button>
+                  <button class="art-chip" data-tool="circle" type="button" aria-label="Circle">◯</button>
+                  <button class="art-chip" data-tool="square" type="button" aria-label="Square">□</button>
+                  <button class="art-chip" data-tool="triangle" type="button" aria-label="Triangle">△</button>
+                </div>
+              </div>
+              <div class="art-combo-section">
+                <span class="art-group-label">Size</span>
+                <div class="art-chip-row art-chip-row-tight art-size-row">
+                  <button class="art-chip art-chip-mini" data-size="8" type="button" aria-label="Tiny">·</button>
+                  <button class="art-chip art-chip-mini" data-size="14" type="button" aria-label="Small">●</button>
+                  <button class="art-chip art-chip-mini is-active" data-size="22" type="button" aria-label="Medium">⬤</button>
+                  <button class="art-chip art-chip-mini" data-size="34" type="button" aria-label="Big">⬤⬤</button>
+                  <button class="art-chip art-chip-mini" data-size="48" type="button" aria-label="Huge">⬤⬤⬤</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="art-tool-group">
+            <span class="art-group-label">Brushes</span>
+            <div class="art-chip-row" id="art-brush-style-row">
+              <button class="art-chip is-active" data-brush-style="pencil" data-tool="paint" type="button" aria-label="Pencil">✏️</button>
+              <button class="art-chip" data-brush-style="marker" data-tool="paint" type="button" aria-label="Marker">🖍️</button>
+              <button class="art-chip" data-brush-style="paintbrush" data-tool="paint" type="button" aria-label="Paint Brush">🖌️</button>
+              <button class="art-chip" data-brush-style="spray" data-tool="paint" type="button" aria-label="Spray Paint">🥫</button>
+              <button class="art-chip" data-brush-style="glitter" data-tool="paint" type="button" aria-label="Glitter">✨</button>
+              <button class="art-chip" data-tool="rainbow" type="button" aria-label="Rainbow Brush">🌈</button>
+            </div>
+          </div>
+
+          <div class="art-tool-group art-tool-group-wide art-tool-group-stamps" id="art-stamps-group" hidden>
+            <span class="art-group-label">Stamps</span>
+            <div class="art-stamp-row" id="art-stamp-row"></div>
+          </div>
+
+          <div class="art-tool-group art-tool-group-wide" id="art-colors-group">
+            <span class="art-group-label">Colors</span>
+            <div class="art-color-row">
+              <button class="art-color is-active" data-color="#ff67b2" style="--swatch:#ff67b2" type="button" aria-label="Pink"></button>
+              <button class="art-color" data-color="#ff8bcf" style="--swatch:#ff8bcf" type="button" aria-label="Light pink"></button>
+              <button class="art-color" data-color="#ff5d8f" style="--swatch:#ff5d8f" type="button" aria-label="Rose pink"></button>
+              <button class="art-color art-color-rainbow" data-color="rainbow" type="button" aria-label="Rainbow"></button>
+              <button class="art-color" data-color="#a76cff" style="--swatch:#a76cff" type="button" aria-label="Purple"></button>
+              <button class="art-color" data-color="#d48dff" style="--swatch:#d48dff" type="button" aria-label="Lavender"></button>
+              <button class="art-color" data-color="#f0a9ff" style="--swatch:#f0a9ff" type="button" aria-label="Soft lilac"></button>
+              <button class="art-color" data-color="#56c8ff" style="--swatch:#56c8ff" type="button" aria-label="Sky blue"></button>
+              <button class="art-color" data-color="#13a8ff" style="--swatch:#13a8ff" type="button" aria-label="Bright blue"></button>
+              <button class="art-color" data-color="#6fe7ff" style="--swatch:#6fe7ff" type="button" aria-label="Aqua"></button>
+              <button class="art-color" data-color="#74d97e" style="--swatch:#74d97e" type="button" aria-label="Green"></button>
+              <button class="art-color" data-color="#44c96d" style="--swatch:#44c96d" type="button" aria-label="Bright green"></button>
+              <button class="art-color" data-color="#b8ef76" style="--swatch:#b8ef76" type="button" aria-label="Lime"></button>
+              <button class="art-color" data-color="#ffd861" style="--swatch:#ffd861" type="button" aria-label="Yellow"></button>
+              <button class="art-color" data-color="#ffad4d" style="--swatch:#ffad4d" type="button" aria-label="Orange"></button>
+              <button class="art-color" data-color="#ff7d5a" style="--swatch:#ff7d5a" type="button" aria-label="Coral"></button>
+              <button class="art-color" data-color="#111111" style="--swatch:#111111" type="button" aria-label="Black"></button>
+              <button class="art-color" data-color="#ffffff" style="--swatch:#ffffff" type="button" aria-label="White"></button>
+            </div>
+          </div>
+        </section>
+
+        <section class="art-stage">
+          <div class="art-canvas-shell">
+            <canvas id="art-canvas" width="960" height="560" aria-label="Drawing canvas"></canvas>
+          </div>
+          <div class="art-actions">
+            <button class="button button-primary" id="art-save-button" type="button">Save Art</button>
+            <button class="button button-secondary" id="art-undo-button" type="button">Undo</button>
+            <button class="button button-secondary" id="art-clear-button" type="button">Clear</button>
+            <a class="button button-primary" href="/">Garden Map</a>
+          </div>
+        </section>
+
+        <section class="art-backdrop-dock">
+          <span class="art-group-label">Backdrops</span>
+          <div class="art-chip-row" id="art-backdrop-picker">
+            <button class="art-chip is-active" data-backdrop="0" type="button">Fairy Forest</button>
+            <button class="art-chip" data-backdrop="1" type="button">Unicorn Meadow</button>
+            <button class="art-chip" data-backdrop="2" type="button">Bunny Garden</button>
+            <button class="art-chip" data-backdrop="3" type="button">Butterfly Studio</button>
+            <button class="art-chip" data-backdrop="4" type="button">Sweet Shop</button>
+            <button class="art-chip" data-backdrop="5" type="button">Soccer Field</button>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="/script.js"></script>
+    <script src="/activities/art-studio.js"></script>
+  </body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Progress Garden | Morgan's Magic Garden</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="theme-page-butterfly">
+    <div class="page-shell">
+      <nav class="top-nav">
+        <a class="brand-mark" href="/">🌸 Morgan's Magic Garden</a>
+        <div class="nav-links">
+          <a class="nav-chip" href="/activities/letters.html">Letters</a>
+          <a class="nav-chip" href="/activities/memory-match.html">Memory Match</a>
+        </div>
+      </nav>
+
+      <main class="activity-shell progress-shell">
+        <section class="activity-banner progress-banner">
+          <div>
+            <p class="section-kicker">For Grown-Ups</p>
+            <h1>Progress Garden</h1>
+            <p>
+              A simple look at what feels strong, what could use more practice,
+              and where Morgan is making little wins.
+            </p>
+          </div>
+          <div class="activity-emoji" aria-hidden="true">🌷📋</div>
+        </section>
+
+        <section class="progress-summary-grid" aria-label="Progress summary">
+          <article class="progress-summary-card">
+            <span class="progress-summary-label">Tracked Plays</span>
+            <strong id="summary-sessions">0</strong>
+          </article>
+          <article class="progress-summary-card">
+            <span class="progress-summary-label">Games Seen</span>
+            <strong id="summary-games">0</strong>
+          </article>
+          <article class="progress-summary-card">
+            <span class="progress-summary-label">Practice Letters</span>
+            <strong id="summary-letters">None yet</strong>
+          </article>
+        </section>
+
+        <section class="progress-grid">
+          <article class="progress-panel">
+            <div class="progress-panel-header">
+              <div>
+                <p class="section-kicker">Letters</p>
+                <h2>Practice Next</h2>
+              </div>
+            </div>
+            <p class="progress-panel-copy">
+              These are the letters getting the most misses so far.
+            </p>
+            <div class="progress-chip-list" id="letters-practice-list" aria-live="polite"></div>
+          </article>
+
+          <article class="progress-panel">
+            <div class="progress-panel-header">
+              <div>
+                <p class="section-kicker">Letters</p>
+                <h2>Confusion Pairs</h2>
+              </div>
+            </div>
+            <p class="progress-panel-copy">
+              Helpful for spotting mixes like one letter being tapped instead of another.
+            </p>
+            <div class="progress-chip-list" id="confusion-pairs-list" aria-live="polite"></div>
+          </article>
+        </section>
+
+        <section class="progress-panel progress-panel-wide">
+          <div class="progress-panel-header">
+            <div>
+              <p class="section-kicker">Recent Activity</p>
+              <h2>Latest Sessions</h2>
+            </div>
+          </div>
+          <p class="progress-panel-copy">
+            Recent finishes from Letters, Patterns, and Memory Match.
+          </p>
+          <div class="progress-session-list" id="recent-sessions-list" aria-live="polite"></div>
+        </section>
+
+        <section class="progress-actions">
+          <button class="button button-secondary" id="progress-refresh-button" type="button">Refresh</button>
+          <button class="button button-secondary" id="progress-clear-button" type="button">Clear Tracker</button>
+          <a class="button button-primary" href="/">Back to Garden Map</a>
+        </section>
+      </main>
+    </div>
+
+    <script src="/activities/tracker.js"></script>
+    <script src="/activities/progress-garden.js"></script>
+  </body>
+</html>

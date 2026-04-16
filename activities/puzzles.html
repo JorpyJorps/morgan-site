@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Puzzles | Morgan's Magic Garden</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="theme-page-puzzle">
+    <div class="page-shell">
+      <nav class="top-nav">
+        <a class="brand-mark" href="/">🌸 Morgan's Magic Garden</a>
+        <div class="nav-links">
+          <a class="nav-chip" href="/activities/art-studio.html">Art Studio</a>
+          <a class="nav-chip" href="/activities/sticker-garden.html">Sticker Garden</a>
+        </div>
+      </nav>
+
+      <main class="activity-shell puzzle-shell">
+        <section class="activity-banner puzzle-banner">
+          <div>
+            <p class="puzzle-kicker">Picture Puzzle Pond</p>
+            <h1>Puzzles</h1>
+            <p class="puzzle-subtitle">Pick the piece that fits the picture.</p>
+          </div>
+          <div class="activity-emoji" aria-hidden="true">🧩✨</div>
+        </section>
+
+        <section class="puzzle-status" aria-label="Puzzle progress">
+          <div class="puzzle-badge">
+            <span class="puzzle-badge-label">Round</span>
+            <strong id="puzzle-round-label">1 / 6</strong>
+          </div>
+          <div class="puzzle-badge">
+            <span class="puzzle-badge-label">Stars</span>
+            <strong id="puzzle-score-label">0</strong>
+          </div>
+        </section>
+
+        <section class="puzzle-board-shell">
+          <div class="puzzle-scene-header">
+            <div class="puzzle-scene-bubble" id="puzzle-scene-label">Magic Unicorn</div>
+          </div>
+
+          <div class="puzzle-board" id="puzzle-board" aria-label="Puzzle board"></div>
+
+          <div class="puzzle-feedback" id="puzzle-feedback">
+            <span class="puzzle-feedback-icon" id="puzzle-feedback-icon" aria-hidden="true">✨</span>
+            <span id="puzzle-feedback-text">Pick the piece that fits.</span>
+          </div>
+
+          <div class="puzzle-options" id="puzzle-options" aria-label="Puzzle piece choices"></div>
+        </section>
+
+        <section class="puzzle-finish" id="puzzle-finish" hidden>
+          <div class="puzzle-finish-card">
+            <div class="puzzle-finish-burst" aria-hidden="true">🧩 ⭐ 💖 ⭐ 🧩</div>
+            <h2>You fixed them all!</h2>
+            <p id="puzzle-finish-text">Morgan finished every puzzle.</p>
+            <div class="puzzle-finish-actions">
+              <button class="button button-primary" id="puzzle-play-again-button" type="button">Play Again</button>
+              <a class="button button-secondary" href="/">Garden Map</a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="/script.js"></script>
+    <script src="/activities/tracker.js"></script>
+    <script src="/activities/puzzles.js"></script>
+  </body>
+</html>

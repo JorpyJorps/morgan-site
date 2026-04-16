@@ -18,38 +18,65 @@
         <a class="brand-mark" href="/">🌸 Morgan's Magic Garden</a>
         <div class="nav-links">
           <a class="nav-chip" href="/activities/shapes.html">Shapes</a>
-          <a class="nav-chip" href="/activities/colors.html">Colors</a>
+          <a class="nav-chip" href="/activities/sticker-garden.html">Stickers</a>
         </div>
       </nav>
 
-      <main class="activity-shell">
-        <section class="activity-banner">
+      <main class="activity-shell pattern-game-shell">
+        <section class="activity-banner pattern-banner">
           <div>
-            <p class="section-kicker">Rainbow Bridge</p>
+            <p class="pattern-kicker">Rainbow Bridge</p>
             <h1>Patterns</h1>
-            <p>
-              This page is ready for a “Finish the Pattern” game with colorful
-              steps, simple repeats, and joyful little surprises.
-            </p>
+            <p class="pattern-subtitle">Tap the piece that comes next.</p>
           </div>
           <div class="activity-emoji" aria-hidden="true">🌈✨</div>
         </section>
 
-        <section class="placeholder-panel">
-          <h2>Coming soon</h2>
-          <p>
-            Future focus: repeating colors and shapes with a clean, easy-to-read
-            pattern path.
-          </p>
-          <div class="tag-row" aria-label="Patterns plans">
-            <span class="tag">Color repeats</span>
-            <span class="tag">Shape repeats</span>
-            <span class="tag">Rainbow rewards</span>
+        <section class="pattern-status" aria-label="Pattern game progress">
+          <div class="pattern-levels" aria-label="Pattern levels">
+            <button class="level-chip is-active" id="level-one-button" type="button">Level 1</button>
+            <button class="level-chip" id="level-two-button" type="button">Level 2</button>
           </div>
-          <a class="button button-primary" href="/">Back to Garden Map</a>
+          <div class="pattern-badge">
+            <span class="pattern-badge-label">Round</span>
+            <strong id="round-label">1 / 8</strong>
+          </div>
+          <div class="pattern-badge">
+            <span class="pattern-badge-label">Stars</span>
+            <strong id="score-label">0</strong>
+          </div>
+        </section>
+
+        <section class="pattern-board" aria-live="polite">
+          <div class="pattern-row" id="pattern-row" aria-label="Pattern pieces"></div>
+
+          <div class="pattern-feedback" id="pattern-feedback">
+            <span class="feedback-icon" id="feedback-icon" aria-hidden="true">✨</span>
+            <span id="feedback-text">Pick the next one.</span>
+          </div>
+
+          <div class="pattern-options" id="pattern-options" aria-label="Pattern choices"></div>
+
+          <button class="button button-primary next-round-button" id="next-round-button" type="button" hidden>
+            Next Rainbow
+          </button>
+        </section>
+
+        <section class="pattern-finish" id="pattern-finish" hidden>
+          <div class="pattern-finish-card">
+            <div class="pattern-finish-burst" aria-hidden="true">🌈 ⭐ 💖 ⭐ 🌈</div>
+            <h2>You did it!</h2>
+            <p id="finish-text">You found all the patterns.</p>
+            <div class="pattern-finish-actions">
+              <button class="button button-primary" id="play-again-button" type="button">Play Again</button>
+              <a class="button button-secondary" href="/">Garden Map</a>
+            </div>
+          </div>
         </section>
       </main>
     </div>
     <script src="/script.js"></script>
+    <script src="/activities/tracker.js"></script>
+    <script src="/activities/patterns.js"></script>
   </body>
 </html>

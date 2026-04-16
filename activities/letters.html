@@ -17,39 +17,88 @@
       <nav class="top-nav">
         <a class="brand-mark" href="/">🌸 Morgan's Magic Garden</a>
         <div class="nav-links">
-          <a class="nav-chip" href="/activities/numbers.html">Numbers</a>
+          <a class="nav-chip" href="/activities/patterns.html">Patterns</a>
           <a class="nav-chip" href="/activities/sticker-garden.html">Sticker Garden</a>
         </div>
       </nav>
 
-      <main class="activity-shell">
-        <section class="activity-banner">
+      <main class="activity-shell letters-shell">
+        <section class="activity-banner letters-banner">
           <div>
-            <p class="section-kicker">Fairy Forest</p>
+            <p class="letters-kicker">Fairy Forest</p>
             <h1>Letters</h1>
-            <p>
-              This path will become a playful “Find the Letter” game with big
-              friendly choices and sparkly forest magic.
-            </p>
+            <p class="letters-subtitle">Find the letter.</p>
           </div>
           <div class="activity-emoji" aria-hidden="true">🧚✨</div>
         </section>
 
-        <section class="placeholder-panel">
-          <h2>Coming soon</h2>
-          <p>
-            Future focus: letter recognition first, with room to grow into
-            uppercase and lowercase matching later.
-          </p>
-          <div class="tag-row" aria-label="Letters plans">
-            <span class="tag">Big tap targets</span>
-            <span class="tag">Happy letter voices</span>
-            <span class="tag">Gentle celebrations</span>
+        <section class="letters-status" aria-label="Letters game progress">
+          <div class="letters-levels" aria-label="Letters levels">
+            <button class="level-chip is-active" id="letters-level-one-button" type="button">Level 1</button>
+            <button class="level-chip" id="letters-level-two-button" type="button">Level 2</button>
           </div>
-          <a class="button button-primary" href="/">Back to Garden Map</a>
+          <div class="letters-badge">
+            <span class="letters-badge-label">Round</span>
+            <strong id="letters-round-label">1 / 8</strong>
+          </div>
+          <div class="letters-badge">
+            <span class="letters-badge-label">Stars</span>
+            <strong id="letters-score-label">0</strong>
+          </div>
+        </section>
+
+        <section class="letters-goal" aria-label="Today's goal">
+          <div class="letters-goal-copy">
+            <span class="letters-goal-kicker">Today's goal</span>
+            <strong>Fill the flower path</strong>
+          </div>
+          <div class="letters-progress" id="letters-progress" aria-label="Letter goal progress"></div>
+        </section>
+
+        <section class="letters-board">
+          <div class="letters-forest-decor" aria-hidden="true">
+            <span class="forest-mushroom forest-mushroom-left">🍄</span>
+            <span class="forest-mushroom forest-mushroom-right">🍄</span>
+            <span class="forest-sparkle forest-sparkle-one">✦</span>
+            <span class="forest-sparkle forest-sparkle-two">✦</span>
+          </div>
+
+          <div class="letters-prompt-shell">
+            <div class="letters-prompt-label">Listen and find</div>
+            <button class="letters-prompt" id="letters-prompt" type="button" aria-label="Hear the letter prompt">
+              ✨
+            </button>
+          </div>
+
+          <div class="letters-feedback" id="letters-feedback">
+            <span class="letters-feedback-icon" id="letters-feedback-icon" aria-hidden="true">✨</span>
+            <span id="letters-feedback-text">Tap the matching letter.</span>
+          </div>
+
+          <div class="letters-options" id="letters-options" aria-label="Letter choices"></div>
+        </section>
+
+        <section class="letters-finish" id="letters-finish" hidden>
+          <div class="letters-finish-card">
+            <div class="letters-celebration" id="letters-celebration" aria-hidden="true">
+              <div class="letters-rainbow-ring"></div>
+              <div class="letters-shooting-star">⭐</div>
+              <div class="letters-confetti letters-confetti-left">✨ 🌸 ⭐ 💖</div>
+              <div class="letters-confetti letters-confetti-right">💖 ⭐ 🌸 ✨</div>
+            </div>
+            <div class="letters-finish-burst" aria-hidden="true">✨ 🌸 ⭐ 💖 ⭐ 🌸 ✨</div>
+            <h2>You found them all!</h2>
+            <p id="letters-finish-text">Morgan found every letter.</p>
+            <div class="letters-finish-actions">
+              <button class="button button-primary" id="letters-play-again-button" type="button">Play Again</button>
+              <a class="button button-secondary" href="/">Garden Map</a>
+            </div>
+          </div>
         </section>
       </main>
     </div>
     <script src="/script.js"></script>
+    <script src="/activities/tracker.js"></script>
+    <script src="/activities/letters.js"></script>
   </body>
 </html>

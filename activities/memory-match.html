@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Match | Morgan's Magic Garden</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="theme-page-kitty">
+    <div class="page-shell">
+      <nav class="top-nav">
+        <a class="brand-mark" href="/">🌸 Morgan's Magic Garden</a>
+        <div class="nav-links">
+          <a class="nav-chip" href="/activities/patterns.html">Patterns</a>
+          <a class="nav-chip" href="/activities/sticker-garden.html">Sticker Garden</a>
+        </div>
+      </nav>
+
+      <main class="activity-shell memory-shell">
+        <section class="activity-banner memory-banner">
+          <div>
+            <p class="memory-kicker">Kitty Card Castle</p>
+            <h1>Memory Match</h1>
+            <p class="memory-subtitle">Tap two cards to find a match.</p>
+            <button class="button button-secondary memory-voice-button" id="memory-voice-button" type="button">
+              Hear It
+            </button>
+          </div>
+          <div class="activity-emoji" aria-hidden="true">🐱💖</div>
+        </section>
+
+        <section class="memory-toolbar" aria-label="Memory game controls">
+          <div class="memory-picker">
+            <span class="memory-picker-label">Theme</span>
+            <div class="memory-chip-row" id="theme-picker">
+              <button class="memory-chip is-active" data-theme="rainbow" type="button">Rainbow Magic</button>
+              <button class="memory-chip" data-theme="animals" type="button">Animal Friends</button>
+              <button class="memory-chip" data-theme="sweets" type="button">Sweet Shop</button>
+              <button class="memory-chip" data-theme="morgan" type="button">Morgan Mix</button>
+            </div>
+          </div>
+
+          <div class="memory-picker">
+            <span class="memory-picker-label">Level</span>
+            <div class="memory-chip-row" id="level-picker">
+              <button class="memory-chip is-active" data-level="level1" type="button">Level 1</button>
+              <button class="memory-chip" data-level="level2" type="button">Level 2</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="memory-status" aria-label="Memory game progress">
+          <div class="memory-badge">
+            <span class="memory-badge-label">Matches</span>
+            <strong id="matches-label">0 / 4</strong>
+          </div>
+          <div class="memory-badge">
+            <span class="memory-badge-label">Turns</span>
+            <strong id="turns-label">0</strong>
+          </div>
+        </section>
+
+        <section class="memory-board-shell">
+          <div class="memory-match-celebration" id="memory-match-celebration" aria-hidden="true"></div>
+          <div class="memory-feedback" id="memory-feedback">
+            <span class="memory-feedback-icon" id="memory-feedback-icon" aria-hidden="true">✨</span>
+            <span id="memory-feedback-text">Pick two cards.</span>
+          </div>
+
+          <div class="memory-board" id="memory-board" aria-label="Memory cards"></div>
+
+          <div class="memory-actions">
+            <button class="button button-primary" id="memory-reset-button" type="button">Shuffle Cards</button>
+            <a class="button button-secondary" href="/">Garden Map</a>
+          </div>
+        </section>
+
+        <section class="memory-finish" id="memory-finish" hidden>
+          <div class="memory-finish-card">
+            <div class="memory-celebration" id="memory-celebration" aria-hidden="true">
+              <div class="memory-shooting-star"></div>
+              <div class="memory-rainbow-ring"></div>
+            </div>
+            <div class="memory-finish-burst" aria-hidden="true">💖 ⭐ 🐱 ⭐ 💖</div>
+            <h2>You found them all!</h2>
+            <p id="memory-finish-text">Morgan matched every card.</p>
+            <div class="memory-actions">
+              <button class="button button-primary" id="memory-play-again-button" type="button">Play Again</button>
+              <a class="button button-secondary" href="/">Garden Map</a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="/script.js"></script>
+    <script src="/activities/tracker.js"></script>
+    <script src="/activities/memory-match.js"></script>
+  </body>
+</html>

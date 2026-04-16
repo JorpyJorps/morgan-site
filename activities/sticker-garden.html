@@ -18,38 +18,69 @@
         <a class="brand-mark" href="/">🌸 Morgan's Magic Garden</a>
         <div class="nav-links">
           <a class="nav-chip" href="/activities/letters.html">Letters</a>
-          <a class="nav-chip" href="/activities/numbers.html">Numbers</a>
+          <a class="nav-chip" href="/activities/memory-match.html">Memory Match</a>
         </div>
       </nav>
 
-      <main class="activity-shell">
-        <section class="activity-banner">
+      <main class="activity-shell sticker-shell">
+        <section class="activity-banner sticker-banner">
           <div>
             <p class="section-kicker">Magic Reward Garden</p>
             <h1>Sticker Garden</h1>
-            <p>
-              This page will become Morgan's happy reward space where stars,
-              stickers, flowers, and tiny surprises can bloom as she plays.
-            </p>
+            <p>Tap a sparkly patch to place a sticker.</p>
           </div>
           <div class="activity-emoji" aria-hidden="true">🏆🌼</div>
         </section>
 
-        <section class="placeholder-panel">
-          <h2>Coming soon</h2>
-          <p>
-            Future focus: a simple visual collection page that feels celebratory,
-            magical, and easy to understand.
-          </p>
-          <div class="tag-row" aria-label="Sticker garden plans">
-            <span class="tag">Stars and badges</span>
-            <span class="tag">Blooming rewards</span>
-            <span class="tag">Family cheer moments</span>
+        <section class="sticker-status" aria-label="Sticker garden progress">
+          <div class="sticker-badge">
+            <span class="sticker-badge-label">Stars</span>
+            <strong id="sticker-star-count">0</strong>
           </div>
-          <a class="button button-primary" href="/">Back to Garden Map</a>
+          <div class="sticker-badge">
+            <span class="sticker-badge-label">Unlocked</span>
+            <strong id="sticker-unlocked-count">0</strong>
+          </div>
+        </section>
+
+        <section class="sticker-layout">
+          <div class="sticker-garden-stage">
+            <div class="sticker-garden-scene" id="sticker-garden-scene">
+              <button class="garden-slot" data-slot="0" type="button" aria-label="Garden spot one"></button>
+              <button class="garden-slot" data-slot="1" type="button" aria-label="Garden spot two"></button>
+              <button class="garden-slot" data-slot="2" type="button" aria-label="Garden spot three"></button>
+              <button class="garden-slot" data-slot="3" type="button" aria-label="Garden spot four"></button>
+              <button class="garden-slot" data-slot="4" type="button" aria-label="Garden spot five"></button>
+              <button class="garden-slot" data-slot="5" type="button" aria-label="Garden spot six"></button>
+            </div>
+          </div>
+
+          <div class="sticker-sidebar">
+            <div class="sticker-panel">
+              <div class="sticker-panel-header">
+                <p class="section-kicker">Sticker Basket</p>
+                <h2>Pick One</h2>
+              </div>
+              <div class="sticker-picker" id="sticker-picker" aria-live="polite"></div>
+            </div>
+
+            <div class="sticker-panel">
+              <div class="sticker-panel-header">
+                <p class="section-kicker">Little Wins</p>
+                <h2>Recent Play</h2>
+              </div>
+              <div class="sticker-session-list" id="sticker-session-list" aria-live="polite"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="sticker-actions">
+          <button class="button button-secondary" id="sticker-reset-button" type="button">Clear Garden</button>
+          <a class="button button-primary" href="/">Garden Map</a>
         </section>
       </main>
     </div>
-    <script src="/script.js"></script>
+    <script src="/activities/tracker.js"></script>
+    <script src="/activities/sticker-garden.js"></script>
   </body>
 </html>

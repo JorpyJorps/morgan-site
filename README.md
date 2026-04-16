@@ -27,3 +27,4 @@ The script prefers port `3001`. If `3001` is already in use, `serve` will choose
 - Build each mini-game directly inside its matching file in `activities/`
 - Add shared components or utility scripts only when the site actually needs them
 - Keep each activity visually distinct while reusing `styles.css` for the main design language
+- Add a hidden parent-review flow later using a 4-digit code and local-only progress tracking

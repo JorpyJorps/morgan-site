@@ -17,39 +17,88 @@
       <nav class="top-nav">
         <a class="brand-mark" href="/">🌸 Morgan's Magic Garden</a>
         <div class="nav-links">
-          <a class="nav-chip" href="/activities/colors.html">Colors</a>
+          <a class="nav-chip" href="/activities/numbers.html">Numbers</a>
           <a class="nav-chip" href="/activities/sticker-garden.html">Sticker Garden</a>
         </div>
       </nav>
 
-      <main class="activity-shell">
-        <section class="activity-banner">
+      <main class="activity-shell bunny-shell shapes-shell">
+        <section class="activity-banner bunny-banner shapes-banner">
           <div>
-            <p class="section-kicker">Bunny Garden</p>
+            <p class="shapes-kicker">Bunny Garden</p>
             <h1>Shapes</h1>
-            <p>
-              This page is saved for a shape matching and sorting game with bunny
-              helpers, flower paths, and cozy garden charm.
-            </p>
+            <p class="shapes-subtitle">Listen and find the shape.</p>
           </div>
-          <div class="activity-emoji" aria-hidden="true">🐰🌷</div>
+          <div class="activity-emoji" aria-hidden="true">🐰🔺</div>
         </section>
 
-        <section class="placeholder-panel">
-          <h2>Coming soon</h2>
-          <p>
-            Future focus: simple shape finding, matching, and sorting with clear
-            visual choices.
-          </p>
-          <div class="tag-row" aria-label="Shapes plans">
-            <span class="tag">Circle, square, triangle</span>
-            <span class="tag">Gentle pacing</span>
-            <span class="tag">Garden buddies</span>
+        <section class="shapes-status" aria-label="Shapes game progress">
+          <div class="shapes-levels" aria-label="Shapes levels">
+            <button class="level-chip is-active" id="shapes-level-one-button" type="button">Level 1</button>
+            <button class="level-chip" id="shapes-level-two-button" type="button">Level 2</button>
           </div>
-          <a class="button button-primary" href="/">Back to Garden Map</a>
+          <div class="shapes-badge">
+            <span class="shapes-badge-label">Round</span>
+            <strong id="shapes-round-label">1 / 8</strong>
+          </div>
+          <div class="shapes-badge">
+            <span class="shapes-badge-label">Stars</span>
+            <strong id="shapes-score-label">0</strong>
+          </div>
+        </section>
+
+        <section class="shapes-goal" aria-label="Today's goal">
+          <div class="shapes-goal-copy">
+            <span class="shapes-goal-kicker">Today's goal</span>
+            <strong>Fill the bunny path</strong>
+          </div>
+          <div class="shapes-progress" id="shapes-progress" aria-label="Shapes goal progress"></div>
+        </section>
+
+        <section class="shapes-board">
+          <div class="shapes-decor" aria-hidden="true">
+            <span class="shapes-carrot shapes-carrot-left">🥕</span>
+            <span class="shapes-carrot shapes-carrot-right">🥕</span>
+            <span class="shapes-flower shapes-flower-one">🌼</span>
+            <span class="shapes-flower shapes-flower-two">🌷</span>
+          </div>
+
+          <div class="shapes-prompt-shell">
+            <div class="shapes-prompt-label" id="shapes-prompt-label">Listen and find</div>
+            <button class="shapes-prompt" id="shapes-prompt" type="button" aria-label="Hear the shape prompt">
+              ✨
+            </button>
+          </div>
+
+          <div class="shapes-feedback" id="shapes-feedback">
+            <span class="shapes-feedback-icon" id="shapes-feedback-icon" aria-hidden="true">✨</span>
+            <span id="shapes-feedback-text">Tap the matching shape.</span>
+          </div>
+
+          <div class="shapes-options" id="shapes-options" aria-label="Shape choices"></div>
+        </section>
+
+        <section class="shapes-finish" id="shapes-finish" hidden>
+          <div class="shapes-finish-card">
+            <div class="shapes-celebration" id="shapes-celebration" aria-hidden="true">
+              <div class="shapes-rainbow-ring"></div>
+              <div class="shapes-bunny-burst">🐰</div>
+              <div class="shapes-confetti shapes-confetti-left">⭐ 🌷 ✨ 🥕</div>
+              <div class="shapes-confetti shapes-confetti-right">🥕 ✨ 🌷 ⭐</div>
+            </div>
+            <div class="shapes-finish-burst" aria-hidden="true">🐰 ⭐ 🌷 ⭐ 🥕</div>
+            <h2>You found them all!</h2>
+            <p id="shapes-finish-text">Morgan found every shape.</p>
+            <div class="shapes-finish-actions">
+              <button class="button button-primary" id="shapes-play-again-button" type="button">Play Again</button>
+              <a class="button button-secondary" href="/">Garden Map</a>
+            </div>
+          </div>
         </section>
       </main>
     </div>
     <script src="/script.js"></script>
+    <script src="/activities/tracker.js"></script>
+    <script src="/activities/shapes.js"></script>
   </body>
 </html>
