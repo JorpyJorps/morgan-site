@@ -15,26 +15,40 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#c084fc" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Magic Garden" />
   </head>
   <body class="page-home">
     <div class="page-shell">
       <header class="hero hero-home">
-        <div class="hero-badges" aria-hidden="true">
-          <span>Rainbow Magic</span>
-          <span>Play & Learn</span>
-          <span>Made for Morgan</span>
-        </div>
-
         <div class="hero-copy">
-          <p class="eyebrow">Welcome to</p>
           <h1>Morgan's Magic Garden</h1>
-          <p class="hero-text">
-            A sparkly little world full of stars, flowers, and playful adventures.
-          </p>
+          <p class="hero-text">Tap a sparkly place to play.</p>
 
           <div class="hero-actions">
-            <a class="button button-primary" href="#garden-paths">Pick a Garden Path</a>
-            <a class="button button-secondary" href="/activities/sticker-garden.html">See Sticker Garden</a>
+            <a class="button button-primary" href="#garden-paths">Play</a>
+            <a class="button button-secondary" href="/activities/sticker-garden.html">Stickers</a>
+          </div>
+
+          <div class="mini-stats" aria-hidden="true">
+            <article class="mini-stat">
+              <span>🌈</span>
+              <strong>Rainbows</strong>
+            </article>
+            <article class="mini-stat">
+              <span>🦄</span>
+              <strong>Unicorns</strong>
+            </article>
+            <article class="mini-stat">
+              <span>💃</span>
+              <strong>Dance</strong>
+            </article>
+            <article class="mini-stat">
+              <span>🐱</span>
+              <strong>Kitties</strong>
+            </article>
           </div>
         </div>
 
@@ -54,89 +68,115 @@
       </header>
 
       <main>
-        <section class="intro-panel">
-          <div>
-            <p class="section-kicker">Morgan's world map</p>
-            <h2>Choose a magical place to play</h2>
+        <section class="map-layout" id="garden-paths" aria-label="Magic garden activities">
+          <div class="map-story" aria-hidden="true">
+            <div class="map-badge">✨ Morgan's Places ✨</div>
+            <div class="map-decor-grid">
+              <div class="map-decor">☁️</div>
+              <div class="map-decor">🌈</div>
+              <div class="map-decor">⭐</div>
+              <div class="map-decor">🦄</div>
+              <div class="map-decor">🌸</div>
+              <div class="map-decor">🧚</div>
+              <div class="map-decor">🐰</div>
+              <div class="map-decor">🦋</div>
+              <div class="map-decor">💖</div>
+            </div>
           </div>
-          <p>
-            Every path leads to a new mini adventure. The games can grow one by one,
-            but the garden is already ready to explore.
-          </p>
-        </section>
 
-        <section class="card-grid" id="garden-paths" aria-label="Magic garden activities">
-          <a class="activity-card theme-fairy" href="/activities/letters.html">
-            <span class="card-icon">🧚</span>
-            <span class="card-title">Letters</span>
-            <span class="card-subtitle">Fairy Forest</span>
-            <span class="card-description">Find the Letter</span>
-          </a>
+          <div class="card-grid">
+            <a class="activity-card theme-fairy" href="/activities/letters.html">
+              <span class="card-icon">🧚</span>
+              <span class="card-title">Letters</span>
+              <span class="card-subtitle">Fairy Forest</span>
+            </a>
 
-          <a class="activity-card theme-unicorn" href="/activities/numbers.html">
-            <span class="card-icon">⭐</span>
-            <span class="card-title">Numbers</span>
-            <span class="card-subtitle">Unicorn Star Meadow</span>
-            <span class="card-description">Count the Stars</span>
-          </a>
+            <a class="activity-card theme-unicorn" href="/activities/numbers.html">
+              <span class="card-icon">⭐</span>
+              <span class="card-title">Numbers</span>
+              <span class="card-subtitle">Star Meadow</span>
+            </a>
 
-          <a class="activity-card theme-rainbow" href="/activities/patterns.html">
-            <span class="card-icon">🌈</span>
-            <span class="card-title">Patterns</span>
-            <span class="card-subtitle">Rainbow Bridge</span>
-            <span class="card-description">Finish the Pattern</span>
-          </a>
+            <a class="activity-card theme-rainbow" href="/activities/patterns.html">
+              <span class="card-icon">🌈</span>
+              <span class="card-title">Patterns</span>
+              <span class="card-subtitle">Rainbow Bridge</span>
+            </a>
 
-          <a class="activity-card theme-bunny" href="/activities/shapes.html">
-            <span class="card-icon">🐰</span>
-            <span class="card-title">Shapes</span>
-            <span class="card-subtitle">Bunny Garden</span>
-            <span class="card-description">Match and Sort</span>
-          </a>
+            <a class="activity-card theme-bunny" href="/activities/shapes.html">
+              <span class="card-icon">🐰</span>
+              <span class="card-title">Shapes</span>
+              <span class="card-subtitle">Bunny Garden</span>
+            </a>
 
-          <a class="activity-card theme-butterfly" href="/activities/colors.html">
-            <span class="card-icon">🦋</span>
-            <span class="card-title">Colors</span>
-            <span class="card-subtitle">Butterfly Paint Studio</span>
-            <span class="card-description">Match the Colors</span>
-          </a>
+            <a class="activity-card theme-butterfly" href="/activities/colors.html">
+              <span class="card-icon">🦋</span>
+              <span class="card-title">Colors</span>
+              <span class="card-subtitle">Butterfly Studio</span>
+            </a>
 
-          <a class="activity-card theme-stickers" href="/activities/sticker-garden.html">
-            <span class="card-icon">🏆</span>
-            <span class="card-title">Sticker Garden</span>
-            <span class="card-subtitle">Magic Reward Garden</span>
-            <span class="card-description">Collect happy surprises</span>
-          </a>
-        </section>
+            <a class="activity-card theme-puzzle" href="/activities/puzzles.html">
+              <span class="card-icon">🧩</span>
+              <span class="card-title">Puzzles</span>
+              <span class="card-subtitle">Picture Puzzle Pond</span>
+            </a>
 
-        <section class="feature-strip" aria-label="Highlights">
-          <article class="feature-pill">
-            <span class="feature-icon">💃</span>
-            <span>Big buttons for little hands</span>
-          </article>
-          <article class="feature-pill">
-            <span class="feature-icon">☁️</span>
-            <span>Gentle, joyful, no worksheet vibes</span>
-          </article>
-          <article class="feature-pill">
-            <span class="feature-icon">👨‍👩‍👧‍👦</span>
-            <span>Made with love for Morgan and her family</span>
-          </article>
-        </section>
+            <a class="activity-card theme-kitty" href="/activities/memory-match.html">
+              <span class="card-icon">🐱</span>
+              <span class="card-title">Memory Match</span>
+              <span class="card-subtitle">Kitty Card Castle</span>
+            </a>
 
-        <section class="coming-soon-panel">
-          <div>
-            <p class="section-kicker">Growing next</p>
-            <h2>Each page is ready for its own mini-game later</h2>
+            <a class="activity-card theme-art" href="/activities/art-studio.html">
+              <span class="card-icon">🎨</span>
+              <span class="card-title">Art Studio</span>
+              <span class="card-subtitle">Rainbow Paint Room</span>
+            </a>
+
+            <a class="activity-card theme-stickers" href="/activities/sticker-garden.html">
+              <span class="card-icon">🏆</span>
+              <span class="card-title">Sticker Garden</span>
+              <span class="card-subtitle">Magic Garden</span>
+            </a>
           </div>
-          <p>
-            The routes, themes, and navigation are set up now so new activities can be
-            added cleanly without rebuilding the whole garden.
-          </p>
+        </section>
+
+        <section class="favorites-panel">
+          <div class="favorites-copy" aria-hidden="true">
+            <div class="sticker-title">Morgan's Favorite Stickers</div>
+          </div>
+
+          <div class="favorites-cloud" aria-label="Morgan favorites">
+            <span class="favorite-bubble bubble-rainbow">🌈</span>
+            <span class="favorite-bubble bubble-unicorn">🦄</span>
+            <span class="favorite-bubble bubble-kitty">🐱</span>
+            <span class="favorite-bubble bubble-fairy">🧚</span>
+            <span class="favorite-bubble bubble-dance">💃</span>
+            <span class="favorite-bubble bubble-gym">🤸</span>
+            <span class="favorite-bubble bubble-soccer">⚽</span>
+            <span class="favorite-bubble bubble-animal">🐶</span>
+            <span class="favorite-bubble bubble-animal-two">🐴</span>
+            <span class="favorite-bubble bubble-sweets">🍩</span>
+            <span class="favorite-bubble bubble-family">👨‍👩‍👧‍👦</span>
+            <span class="favorite-bubble bubble-brother">💙</span>
+          </div>
+        </section>
+
+        <section class="progress-garden-panel">
+          <div class="progress-garden-copy">
+            <h2>Progress Garden</h2>
+            <p>See what is feeling easy and what could use a little more practice.</p>
+          </div>
+          <a class="progress-garden-link" href="/activities/parent-review.html">Open Progress Garden</a>
         </section>
       </main>
     </div>
 
     <script src="/script.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js');
+      }
+    </script>
   </body>
 </html>

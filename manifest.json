@@ -1,0 +1,21 @@
+{
+  "name": "Morgan's Magic Garden",
+  "short_name": "Magic Garden",
+  "description": "A magical learning garden made just for Morgan",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff0f8",
+  "theme_color": "#c084fc",
+  "icons": [
+    {
+      "src": "/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
