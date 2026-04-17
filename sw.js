@@ -1,4 +1,4 @@
-const CACHE = 'morgan-garden-v1';
+const CACHE = 'morgan-garden-v2';
 
 const PRECACHE = [
   '/',
@@ -40,7 +40,17 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
+  // Network first — always try live, fall back to cache if offline
   e.respondWith(
-    caches.match(e.request).then(cached => cached || fetch(e.request))
+    fetch(e.request)
+      .then(response => {
+        // Cache successful responses for offline use
+        if (response.ok) {
+          const clone = response.clone();
+          caches.open(CACHE).then(c => c.put(e.request, clone));
+        }
+        return response;
+      })
+      .catch(() => caches.match(e.request))
   );
 });
