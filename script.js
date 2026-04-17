@@ -31,6 +31,86 @@ if ("speechSynthesis" in window) {
   });
 }
 
+// ── Pirouette first-launch experience ─────────────────
+if (document.body.classList.contains("page-home")) {
+  const overlay     = document.getElementById("meetPirouette");
+  const step1       = document.getElementById("mpStep1");
+  const step2       = document.getElementById("mpStep2");
+  const step3       = document.getElementById("mpStep3");
+  const helloBtn    = document.getElementById("mpHelloBtn");
+  const goBtn       = document.getElementById("mpGoBtn");
+  const cat1        = document.getElementById("mpCat1");
+  const cat3        = document.getElementById("mpCat3");
+  const pirouetteCat = document.querySelector(".pirouette-cat");
+
+  const MET_KEY    = "morgan_pirouette_met_v1";
+  const ANIMAL_KEY = "morgan_pirouette_animal_v1";
+
+  // Restore saved animal on home screen
+  const savedAnimal = localStorage.getItem(ANIMAL_KEY);
+  const animalEmoji = savedAnimal === "penguin" ? "🐧" : "🐱";
+  if (pirouetteCat) pirouetteCat.textContent = animalEmoji;
+
+  function speak(text, rate = 0.88, pitch = 1.15) {
+    if (!("speechSynthesis" in window)) return;
+    window.speechSynthesis.cancel();
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.rate = rate;
+    utt.pitch = pitch;
+    window.speechSynthesis.speak(utt);
+  }
+
+  function showStep(hideEl, showEl, speakText) {
+    hideEl.hidden = true;
+    showEl.hidden = false;
+    // Re-trigger animation
+    showEl.style.animation = "none";
+    showEl.offsetHeight; // reflow
+    showEl.style.animation = "";
+    if (speakText) speak(speakText);
+  }
+
+  function dismissOverlay() {
+    overlay.style.animation = "mpFadeOut 0.5s ease both";
+    overlay.addEventListener("animationend", () => {
+      overlay.hidden = true;
+    }, { once: true });
+  }
+
+  // Show overlay if first visit
+  if (!localStorage.getItem(MET_KEY)) {
+    overlay.hidden = false;
+    speak("Bonjour! I've been waiting just for you! I'm Pirouette!");
+  }
+
+  // Step 1 → Step 2
+  helloBtn && helloBtn.addEventListener("pointerdown", () => {
+    showStep(step1, step2, "What do I look like today?");
+  });
+
+  // Step 2 → Step 3 (animal pick)
+  document.querySelectorAll(".mp-animal-btn").forEach(btn => {
+    btn.addEventListener("pointerdown", () => {
+      const animal = btn.dataset.animal;
+      const emoji  = btn.dataset.emoji;
+      localStorage.setItem(ANIMAL_KEY, animal);
+      // Update all cats in overlay and home screen
+      [cat1, cat3].forEach(c => { if (c) c.textContent = emoji; });
+      if (pirouetteCat) pirouetteCat.textContent = emoji;
+      showStep(step2, step3, "Allons-y! Let's play!");
+    });
+  });
+
+  // Step 3 → Dismiss
+  goBtn && goBtn.addEventListener("pointerdown", () => {
+    localStorage.setItem(MET_KEY, "true");
+    dismissOverlay();
+    // Scroll to games
+    document.getElementById("garden-paths")?.scrollIntoView({ behavior: "smooth" });
+  });
+}
+
+// ── Sparkle cursor (home page) ─────────────────────────
 if (document.body.classList.contains("page-home")) {
   const sparkleSymbols = ["✦", "✧", "⭐"];
   let lastSparkleAt = 0;

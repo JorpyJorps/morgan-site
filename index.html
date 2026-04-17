@@ -142,6 +142,59 @@
       </main>
     </div>
 
+    <!-- Pirouette first-launch overlay -->
+    <div class="meet-pirouette" id="meetPirouette" aria-modal="true" role="dialog" aria-label="Meet Pirouette" hidden>
+      <!-- Step 1: Meet -->
+      <div class="mp-step" id="mpStep1">
+        <div class="mp-sparkles" aria-hidden="true">
+          <span class="mp-spark s1">✦</span>
+          <span class="mp-spark s2">✧</span>
+          <span class="mp-spark s3">⭐</span>
+          <span class="mp-spark s4">✦</span>
+          <span class="mp-spark s5">✧</span>
+        </div>
+        <div class="mp-cat" id="mpCat1">🐱</div>
+        <div class="mp-bubble">
+          <p class="mp-french">Bonjour! 🌸</p>
+          <p class="mp-text">I've been waiting<br>just for you!</p>
+        </div>
+        <p class="mp-name">I'm <strong>Pirouette</strong>!</p>
+        <button class="mp-btn" id="mpHelloBtn">
+          <span>Bonjour, Pirouette!</span> 🐱
+        </button>
+      </div>
+
+      <!-- Step 2: Pick animal -->
+      <div class="mp-step" id="mpStep2" hidden>
+        <div class="mp-cat mp-cat-ask" id="mpCat2">🐱</div>
+        <div class="mp-bubble mp-bubble-ask">
+          <p class="mp-text">What do I look<br>like today?</p>
+        </div>
+        <div class="mp-animal-picks">
+          <button class="mp-animal-btn" data-animal="cat" data-emoji="🐱">
+            <span class="mp-animal-emoji">🐱</span>
+            <span class="mp-animal-label">A cat!</span>
+          </button>
+          <button class="mp-animal-btn" data-animal="penguin" data-emoji="🐧">
+            <span class="mp-animal-emoji">🐧</span>
+            <span class="mp-animal-label">A penguin!</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Let's go! -->
+      <div class="mp-step" id="mpStep3" hidden>
+        <div class="mp-cat mp-cat-spin" id="mpCat3">🐱</div>
+        <div class="mp-bubble">
+          <p class="mp-french">Allons-y! 🌟</p>
+          <p class="mp-text">Let's play!</p>
+        </div>
+        <button class="mp-btn mp-btn-go" id="mpGoBtn">
+          Let's go! 🌈
+        </button>
+      </div>
+    </div>
+
     <script src="/script.js"></script>
     <script>
       if ('serviceWorker' in navigator) {
