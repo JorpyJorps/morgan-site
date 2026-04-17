@@ -17,8 +17,7 @@
       <nav class="top-nav">
         <a class="brand-mark" href="/">🌸 Morgan's Magic Garden</a>
         <div class="nav-links">
-          <a class="nav-chip" href="/activities/patterns.html">Patterns</a>
-          <a class="nav-chip" href="/activities/sticker-garden.html">Sticker Garden</a>
+          <a class="nav-chip" href="/">🌸 Home</a>
         </div>
       </nav>
 
@@ -34,8 +33,8 @@
 
         <section class="letters-status" aria-label="Letters game progress">
           <div class="letters-levels" aria-label="Letters levels">
-            <button class="level-chip is-active" id="letters-level-one-button" type="button">Level 1</button>
-            <button class="level-chip" id="letters-level-two-button" type="button">Level 2</button>
+            <button class="level-chip is-active" id="letters-level-one-button" type="button">ABC</button>
+            <button class="level-chip" id="letters-level-two-button" type="button">abc</button>
           </div>
           <div class="letters-badge">
             <span class="letters-badge-label">Round</span>
@@ -63,19 +62,31 @@
             <span class="forest-sparkle forest-sparkle-two">✦</span>
           </div>
 
-          <div class="letters-prompt-shell">
-            <div class="letters-prompt-label">Listen and find</div>
-            <button class="letters-prompt" id="letters-prompt" type="button" aria-label="Hear the letter prompt">
-              ✨
-            </button>
-          </div>
+          <div class="letters-game-area">
+            <div class="game-pirouette" id="gamePirouette">
+              <div class="gp-bubble" id="gpBubble">
+                <p id="gpBubbleText">Find the letter! 🎵</p>
+              </div>
+              <div class="gp-cat" id="gpCat">🐱</div>
+            </div>
 
-          <div class="letters-feedback" id="letters-feedback">
-            <span class="letters-feedback-icon" id="letters-feedback-icon" aria-hidden="true">✨</span>
-            <span id="letters-feedback-text">Tap the matching letter.</span>
-          </div>
+            <div class="letters-game-content">
+              <div class="letters-prompt-shell">
+                <div class="letters-prompt-label">Listen and find</div>
+                <button class="letters-prompt" id="letters-prompt" type="button" aria-label="Hear the letter prompt">
+                  <span class="letters-prompt-icon">🔊</span>
+                  <span class="letters-prompt-hint">Hear it!</span>
+                </button>
+              </div>
 
-          <div class="letters-options" id="letters-options" aria-label="Letter choices"></div>
+              <div class="letters-feedback" id="letters-feedback">
+                <span class="letters-feedback-icon" id="letters-feedback-icon" aria-hidden="true">✨</span>
+                <span id="letters-feedback-text">Listen and find the letter! 🎵</span>
+              </div>
+
+              <div class="letters-options" id="letters-options" aria-label="Letter choices"></div>
+            </div>
+          </div>
         </section>
 
         <section class="letters-finish" id="letters-finish" hidden>
@@ -85,6 +96,12 @@
               <div class="letters-shooting-star">⭐</div>
               <div class="letters-confetti letters-confetti-left">✨ 🌸 ⭐ 💖</div>
               <div class="letters-confetti letters-confetti-right">💖 ⭐ 🌸 ✨</div>
+            </div>
+            <div class="letters-finish-pirouette" aria-hidden="true">
+              <div class="gp-bubble gp-finish-bubble">
+                <p>Magnifique! 🌟</p>
+              </div>
+              <div class="gp-cat gp-finish-cat" id="gpFinishCat">🐱</div>
             </div>
             <div class="letters-finish-burst" aria-hidden="true">✨ 🌸 ⭐ 💖 ⭐ 🌸 ✨</div>
             <h2>You found them all!</h2>

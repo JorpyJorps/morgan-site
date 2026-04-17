@@ -1,3 +1,26 @@
+// ── Pirouette character helpers ───────────────────────────────────────────
+
+function getPirouetteEmoji() {
+  return localStorage.getItem('morgan_pirouette_animal_v1') === 'penguin' ? '🐧' : '🐱';
+}
+
+function setPirouette(state, bubbleText) {
+  const cat = document.getElementById('gpCat');
+  const bubble = document.getElementById('gpBubble');
+  const text = document.getElementById('gpBubbleText');
+  if (!cat) return;
+  cat.textContent = getPirouetteEmoji();
+  if (text && bubbleText) text.textContent = bubbleText;
+  // Remove all state classes, add new one
+  const gp = document.getElementById('gamePirouette');
+  if (gp) {
+    gp.className = 'game-pirouette';
+    if (state) gp.classList.add('gp-' + state);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 const lettersPool = [
   "A",
   "B",
@@ -148,7 +171,7 @@ function speakLetterPrompt() {
 function resetLettersFeedback() {
   lettersFeedback.classList.remove("is-correct", "is-wrong");
   lettersFeedbackIcon.textContent = "✨";
-  lettersFeedbackText.textContent = "Tap the matching letter.";
+  lettersFeedbackText.textContent = "Listen and find the letter! 🎵";
 }
 
 function shuffle(items) {
@@ -166,8 +189,9 @@ function renderLettersRound() {
   const round = letterRounds[lettersRound];
 
   lettersAnswered = false;
-  lettersPrompt.textContent = "✨";
+  lettersPrompt.innerHTML = '<span class="letters-prompt-icon">🔊</span><span class="letters-prompt-hint">Hear it!</span>';
   lettersPrompt.disabled = false;
+  setPirouette('idle', 'Find the letter! 🎵');
   lettersRoundLabel.textContent = `${lettersRound + 1} / ${sessionLength}`;
   lettersScoreLabel.textContent = String(lettersScore);
   renderLettersProgress();
@@ -200,6 +224,9 @@ function finishLetters() {
   lettersFinish.hidden = false;
   lettersFinishText.textContent = `Morgan found ${lettersScore} magic letters!`;
   lettersCelebration.classList.remove("is-active");
+  setPirouette('celebrate', 'Bravo! You did it! 🎉');
+  const finishCat = document.getElementById('gpFinishCat');
+  if (finishCat) finishCat.textContent = getPirouetteEmoji();
   trackEvent({
     type: "session_complete",
     game: "letters",
@@ -252,7 +279,8 @@ function chooseLetter(choice, button) {
     lettersFeedback.classList.add("is-correct");
     lettersFeedbackIcon.textContent = "🌸";
     lettersFeedbackText.textContent = `You found ${round.target}!`;
-    lettersPrompt.textContent = round.target;
+    lettersPrompt.innerHTML = '<span class="letters-prompt-icon">🔊</span><span class="letters-prompt-hint">Hear it!</span>';
+    setPirouette('celebrate', 'Magnifique! 🌟');
     lettersBoard.classList.remove("letters-shake");
     lettersBoard.classList.add("letters-celebrate");
     lettersPrompt.disabled = true;
@@ -277,7 +305,8 @@ function chooseLetter(choice, button) {
   lettersFeedback.classList.remove("is-correct");
   lettersFeedback.classList.add("is-wrong");
   lettersFeedbackIcon.textContent = "💫";
-  lettersFeedbackText.textContent = "Try another one.";
+  lettersFeedbackText.textContent = "Hmm... try again! 💫";
+  setPirouette('thinking', 'Hmm... try again! 💫');
   lettersBoard.classList.remove("letters-celebrate", "letters-shake");
   void lettersBoard.offsetWidth;
   lettersBoard.classList.add("letters-shake");
@@ -341,5 +370,13 @@ lettersLevelOneButton.addEventListener("click", () => setLettersLevel("level1"))
 lettersLevelTwoButton.addEventListener("click", () => setLettersLevel("level2"));
 
 letterRounds = buildLetterRounds();
+
+// Set Pirouette animal immediately from localStorage
+const gpCatInit = document.getElementById('gpCat');
+if (gpCatInit) gpCatInit.textContent = getPirouetteEmoji();
+const gpFinishCatInit = document.getElementById('gpFinishCat');
+if (gpFinishCatInit) gpFinishCatInit.textContent = getPirouetteEmoji();
+
 renderLettersRound();
 speakLetterPrompt();
+setPirouette('idle', 'Find the letter! 🎵');
