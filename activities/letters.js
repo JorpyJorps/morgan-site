@@ -151,6 +151,31 @@ function playLettersFinishSound() {
   playTone(783.99, start + 0.72, 0.36, 0.06);
 }
 
+// Pick the warmest available voice. On iOS/macOS "Samantha" is noticeably
+// better than the default; Chrome desktop has "Google US English".
+// We cache the result so we don't scan the list on every prompt.
+let _bestVoice = null;
+function getBestVoice() {
+  if (_bestVoice) return _bestVoice;
+  const voices = window.speechSynthesis.getVoices();
+  if (!voices.length) return null;
+  const preferred = [
+    "Samantha",           // iOS / macOS — warm & clear
+    "Karen",              // macOS alternate
+    "Google US English",  // Chrome desktop — much better than system default
+    "Microsoft Aria Online (Natural)",  // Edge / Windows
+    "Microsoft Zira",     // Windows fallback
+  ];
+  for (const name of preferred) {
+    const match = voices.find((v) => v.name === name);
+    if (match) { _bestVoice = match; return match; }
+  }
+  // Any en-US voice beats the system default on most platforms
+  const enUS = voices.find((v) => v.lang === "en-US");
+  _bestVoice = enUS || voices[0] || null;
+  return _bestVoice;
+}
+
 function speakLetterPrompt() {
   const round = letterRounds[lettersRound];
   const message = `Find the letter ${round.target}.`;
@@ -162,10 +187,17 @@ function speakLetterPrompt() {
 
   window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(message);
-  utterance.rate = 0.88;
-  utterance.pitch = 1.18;
+  utterance.rate = 0.82;    // a touch slower — easier for a 5-year-old
+  utterance.pitch = 1.1;
   utterance.volume = 1;
+  const voice = getBestVoice();
+  if (voice) utterance.voice = voice;
   window.speechSynthesis.speak(utterance);
+}
+
+// Voices load async in some browsers — bust the cache when they arrive
+if ("speechSynthesis" in window) {
+  window.speechSynthesis.addEventListener("voiceschanged", () => { _bestVoice = null; });
 }
 
 function resetLettersFeedback() {

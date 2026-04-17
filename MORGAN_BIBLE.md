@@ -130,6 +130,7 @@ Push every meaningful change, even small ones. This project uses **continuous de
 - Pirouette Tamagotchi (no-pressure daily care — feed, dress, play)
 - Girl Rock easter egg (get dad's 101-song Spotify playlist, wire in somewhere secret)
 - Speech therapy report → tune sound game targets when received
+- **Voice upgrade**: Current Web Speech API sounds robotic. Best long-term fix is pre-recorded MP3s per letter (warm, human voice — record once, play forever, no network needed). ElevenLabs can generate them. Short-term patch: pick best available system voice (Samantha on iOS, Google US English on Chrome) — already done.
 - Confirm French is the right specialty subject after Morgan reacts to it
 - Test with Morgan after each major update — she is the QA team
 
