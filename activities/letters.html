@@ -55,33 +55,23 @@
         </section>
 
         <section class="letters-board">
-          <div class="letters-forest-decor" aria-hidden="true">
-            <span class="forest-mushroom forest-mushroom-left">🍄</span>
-            <span class="forest-mushroom forest-mushroom-right">🍄</span>
-            <span class="forest-sparkle forest-sparkle-one">✦</span>
-            <span class="forest-sparkle forest-sparkle-two">✦</span>
-          </div>
-
           <div class="letters-game-area">
             <div class="game-pirouette" id="gamePirouette">
               <div class="gp-bubble" id="gpBubble">
-                <p id="gpBubbleText">Find the letter! 🎵</p>
+                <p id="gpBubbleText">🎵</p>
               </div>
               <div class="gp-cat" id="gpCat">🐱</div>
             </div>
 
             <div class="letters-game-content">
-              <div class="letters-prompt-shell">
-                <div class="letters-prompt-label">Listen and find</div>
-                <button class="letters-prompt" id="letters-prompt" type="button" aria-label="Hear the letter prompt">
-                  <span class="letters-prompt-icon">🔊</span>
-                  <span class="letters-prompt-hint">Hear it!</span>
-                </button>
-              </div>
+              <button class="letters-prompt" id="letters-prompt" type="button" aria-label="Hear the letter prompt">
+                <span class="letters-prompt-icon">🔊</span>
+                <span class="letters-prompt-hint">Hear it!</span>
+              </button>
 
               <div class="letters-feedback" id="letters-feedback">
-                <span class="letters-feedback-icon" id="letters-feedback-icon" aria-hidden="true">✨</span>
-                <span id="letters-feedback-text">Listen and find the letter! 🎵</span>
+                <span class="letters-feedback-icon" id="letters-feedback-icon" aria-hidden="true"></span>
+                <span id="letters-feedback-text"></span>
               </div>
 
               <div class="letters-options" id="letters-options" aria-label="Letter choices"></div>

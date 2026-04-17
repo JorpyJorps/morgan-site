@@ -191,7 +191,7 @@ function renderLettersRound() {
   lettersAnswered = false;
   lettersPrompt.innerHTML = '<span class="letters-prompt-icon">🔊</span><span class="letters-prompt-hint">Hear it!</span>';
   lettersPrompt.disabled = false;
-  setPirouette('idle', 'Find the letter! 🎵');
+  setPirouette('idle', '🎵');
   lettersRoundLabel.textContent = `${lettersRound + 1} / ${sessionLength}`;
   lettersScoreLabel.textContent = String(lettersScore);
   renderLettersProgress();
@@ -331,9 +331,36 @@ function setLettersLevel(level) {
   restartLetters();
 }
 
+// Build a weighted pool that over-indexes on letters Morgan has missed before.
+// Missed letters get extra entries so they come up more often — but gently,
+// not so much it feels like a punishment loop.
+function buildWeightedPool() {
+  const events = window.MorganTracker?.read() || [];
+  const wrongCounts = {};
+
+  events
+    .filter(e => e.game === "letters" && e.type === "answer" && !e.correct)
+    .forEach(e => {
+      if (e.target) wrongCounts[e.target] = (wrongCounts[e.target] || 0) + 1;
+    });
+
+  const pool = [];
+  lettersPool.forEach(letter => {
+    const misses = wrongCounts[letter] || 0;
+    // 1 base entry + up to 2 bonus entries for letters she struggles with
+    const weight = 1 + Math.min(misses, 2);
+    for (let i = 0; i < weight; i++) pool.push(letter);
+  });
+
+  return pool;
+}
+
 function buildLetterRounds() {
+  const pool = buildWeightedPool();
+
   for (let attempt = 0; attempt < 6; attempt += 1) {
-    const rounds = shuffle(lettersPool)
+    const rounds = shuffle(pool)
+      .filter((letter, index, arr) => arr.indexOf(letter) === index) // dedupe after shuffle
       .slice(0, sessionLength)
       .map((target) => {
         const wrongChoices = shuffle(lettersPool.filter((letter) => letter !== target)).slice(0, 2);
