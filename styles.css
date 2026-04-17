@@ -1111,16 +1111,15 @@ h2 {
 }
 
 .theme-page-fairy {
-  --bg-top: #fff0fb;
-  --bg-bottom: #edf3ff;
+  --bg-top: #fff0f8;
+  --bg-bottom: #f0e8ff;
 }
 
 .letters-shell {
   background:
-    linear-gradient(180deg, rgba(243, 251, 241, 0.98), rgba(222, 239, 220, 0.97)),
-    radial-gradient(circle at top right, rgba(215, 183, 255, 0.2), transparent 23%),
-    radial-gradient(circle at bottom left, rgba(170, 214, 176, 0.32), transparent 30%),
-    radial-gradient(circle at top left, rgba(255, 236, 244, 0.16), transparent 22%);
+    linear-gradient(160deg, rgba(255, 236, 248, 0.98) 0%, rgba(240, 228, 255, 0.96) 50%, rgba(255, 240, 250, 0.97) 100%),
+    radial-gradient(circle at top right, rgba(255, 200, 230, 0.3), transparent 40%),
+    radial-gradient(circle at bottom left, rgba(200, 170, 255, 0.25), transparent 40%);
 }
 
 .letters-banner {
@@ -1332,26 +1331,34 @@ h2 {
 
 .letters-option {
   min-height: 170px;
-  border: 0;
+  border: 2px solid rgba(220, 180, 255, 0.25);
   border-radius: 32px;
   background:
-    radial-gradient(circle at 24% 24%, rgba(255, 255, 255, 0.92), transparent 16%),
-    linear-gradient(135deg, #fffefd, #eef8e8, #fbe5f1);
-  box-shadow: 0 16px 30px rgba(156, 116, 169, 0.18);
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.95), transparent 50%),
+    linear-gradient(145deg, #fff5fd, #f4ebff, #fff0f8);
+  box-shadow:
+    0 8px 20px rgba(180, 120, 220, 0.14),
+    0 2px 6px rgba(255, 180, 220, 0.12);
   color: var(--ink-strong);
   cursor: pointer;
   font-family: "Baloo 2", cursive;
   font-size: 4.4rem;
   font-weight: 800;
-  transition: transform 180ms ease;
+  transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 200ms ease;
 }
 
 .letters-option:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.03);
+  box-shadow:
+    0 14px 28px rgba(180, 120, 220, 0.22),
+    0 4px 10px rgba(255, 180, 220, 0.18);
+  border-color: rgba(200, 150, 255, 0.45);
 }
 
 .letters-option.is-correct {
-  background: linear-gradient(135deg, #fff1ae, #dcf5d3, #ffd9f0);
+  background: linear-gradient(135deg, #fff6c0, #ffdff4, #e8d5ff);
+  border-color: rgba(200, 150, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(255, 200, 230, 0.4), 0 12px 28px rgba(180, 120, 220, 0.22);
 }
 
 .letters-option.is-wrong {
@@ -1507,43 +1514,63 @@ h2 {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  overflow: hidden;
 }
 
-.forest-mushroom,
+.forest-flower,
 .forest-sparkle {
   position: absolute;
 }
 
-.forest-mushroom {
-  font-size: 2.4rem;
-  filter: drop-shadow(0 10px 14px rgba(131, 95, 69, 0.18));
+.forest-flower {
+  font-size: 2rem;
+  filter: drop-shadow(0 4px 8px rgba(255, 130, 180, 0.3));
+  animation: floaty 4s ease-in-out infinite;
 }
 
-.forest-mushroom-left {
-  left: 18px;
+.forest-flower-left {
+  left: 14px;
+  top: 14px;
+  animation-delay: 0s;
+}
+
+.forest-flower-right {
+  right: 14px;
   top: 18px;
-}
-
-.forest-mushroom-right {
-  right: 18px;
-  top: 22px;
+  animation-delay: 1.2s;
+  font-size: 1.7rem;
 }
 
 .forest-sparkle {
-  color: #fff1a8;
-  text-shadow: 0 0 12px rgba(255, 241, 168, 0.9);
+  color: #ffcce8;
+  text-shadow: 0 0 10px rgba(255, 160, 200, 0.8);
   animation: twinkle 2.4s ease-in-out infinite;
+  font-size: 1.1rem;
 }
 
 .forest-sparkle-one {
-  top: 32px;
-  left: 78px;
+  top: 28px;
+  left: 72px;
 }
 
 .forest-sparkle-two {
-  top: 54px;
-  right: 82px;
+  top: 48px;
+  right: 76px;
   animation-delay: 0.7s;
+}
+
+/* Floating petals — pure CSS, no images */
+.letters-board::after {
+  content: "🌸  🌺  🌷  🌸";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.4rem;
+  letter-spacing: 0.5em;
+  opacity: 0.35;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
 .theme-page-unicorn {
