@@ -212,7 +212,6 @@ h2 {
 }
 
 .button:hover,
-.activity-card:hover,
 .nav-chip:hover {
   transform: translateY(-2px);
 }
@@ -231,6 +230,31 @@ h2 {
 .hero-scene {
   position: relative;
   min-height: 360px;
+}
+
+/* ── Hero mobile ─────────────────────────────────── */
+@media (max-width: 640px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+    gap: 0;
+  }
+
+  .hero-pirouette {
+    min-height: 200px;
+  }
+
+  .pirouette-cat {
+    font-size: 5rem;
+  }
+
+  .pirouette-bubble {
+    font-size: 0.95rem;
+    min-width: 120px;
+    padding: 10px 14px;
+    top: 0;
+    right: 0;
+  }
 }
 
 .scene-cloud,
@@ -344,9 +368,6 @@ h2 {
   animation-delay: 1.2s;
 }
 
-.map-layout,
-.favorites-panel,
-.progress-garden-panel,
 .placeholder-panel,
 .activity-shell {
   margin-top: 28px;
@@ -356,82 +377,62 @@ h2 {
   box-shadow: var(--shadow);
 }
 
-.map-layout {
-  display: grid;
-  grid-template-columns: 320px minmax(0, 1fr);
-  gap: 22px;
+/* ── Garden section (home) ─────────────────────────── */
+.garden-section {
+  margin-top: 28px;
+  padding: 28px;
+  border-radius: var(--radius-xl);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 245, 251, 0.84)),
     radial-gradient(circle at top left, rgba(255, 241, 185, 0.35), transparent 30%);
+  box-shadow: var(--shadow);
 }
 
-.map-story {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 18px;
-  padding: 18px 14px;
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.56);
-}
-
-.map-badge {
-  display: inline-flex;
-  justify-content: center;
-  padding: 14px 18px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.9);
+.section-heading {
   font-family: "Baloo 2", cursive;
-  font-size: 1.35rem;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
   font-weight: 800;
   color: var(--ink-strong);
-}
-
-.map-decor-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.map-decor {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 88px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.72);
-  font-size: 2rem;
+  text-align: center;
+  margin: 0 0 22px;
+  letter-spacing: -0.01em;
 }
 
 .card-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
 }
 
 .activity-card {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  min-height: 210px;
-  padding: 24px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+  min-height: 200px;
+  padding: 0;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  box-shadow:
+    0 8px 20px rgba(170, 110, 188, 0.18),
+    0 24px 48px rgba(170, 110, 188, 0.12);
+  transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 200ms ease;
+  overflow: hidden;
 }
 
-.activity-card::after {
-  content: "Open Path";
-  margin-top: auto;
-  width: fit-content;
-  padding: 9px 14px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.72);
-  font-family: "Baloo 2", cursive;
-  font-size: 1.05rem;
-  font-weight: 800;
+.activity-card:hover {
+  transform: scale(1.04) translateY(-3px);
+  box-shadow:
+    0 12px 28px rgba(170, 110, 188, 0.24),
+    0 32px 56px rgba(170, 110, 188, 0.16);
 }
 
 .activity-card.is-disabled {
@@ -443,24 +444,66 @@ h2 {
   transform: none;
 }
 
-.activity-card.is-disabled::after {
-  content: "TBD";
+.card-icon {
+  font-size: 3.5rem;
+  display: block;
+  text-align: center;
+  padding-top: 24px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
 }
 
-.card-icon {
-  font-size: 3rem;
+.card-label {
+  width: 100%;
+  padding: 12px 16px 14px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
 }
 
 .card-title {
-  font-size: 2.1rem;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
   font-weight: 800;
   line-height: 1;
+  text-align: center;
 }
 
 .card-subtitle {
-  font-size: 1.08rem;
+  font-size: 0.9rem;
   font-weight: 800;
-  color: rgba(79, 48, 101, 0.75);
+  color: rgba(79, 48, 101, 0.72);
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .activity-card {
+    min-height: 150px;
+  }
+
+  .card-icon {
+    font-size: 2.6rem;
+    padding-top: 18px;
+  }
+
+  .card-label {
+    padding: 10px 12px 12px;
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+  }
+
+  .card-subtitle {
+    font-size: 0.8rem;
+  }
 }
 
 .theme-fairy {
@@ -497,6 +540,156 @@ h2 {
 
 .theme-stickers {
   background: linear-gradient(135deg, #fff4c7, #f3d9ff, #ffe0f2);
+}
+
+.theme-french {
+  background: linear-gradient(135deg, #fdf3dc, #f7e6b5, #c8d8f5);
+}
+
+.theme-build {
+  background: linear-gradient(135deg, #ffe8cc, #ffd4a8, #c8f0ec);
+}
+
+/* ── Hero kicker pill ─────────────────────────────── */
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 120, 183, 0.18), rgba(161, 111, 244, 0.18));
+  border: 1.5px solid rgba(161, 111, 244, 0.25);
+  font-family: "Baloo 2", cursive;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--lavender-deep);
+  margin-bottom: 16px;
+  letter-spacing: 0.01em;
+}
+
+/* ── Pirouette hero character ─────────────────────── */
+.hero-pirouette {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+}
+
+.pirouette-scene {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.pirouette-cat {
+  font-size: 7rem;
+  filter: drop-shadow(0 12px 24px rgba(170, 110, 188, 0.3));
+  animation: pirouetteFloat 3.4s ease-in-out infinite;
+  display: block;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
+
+.pirouette-bubble {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 22px;
+  padding: 14px 18px;
+  box-shadow:
+    0 8px 24px rgba(170, 110, 188, 0.2),
+    0 2px 8px rgba(170, 110, 188, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-family: "Baloo 2", cursive;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--ink-strong);
+  min-width: 148px;
+  text-align: center;
+  animation: bubblePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: 0.3s;
+  z-index: 3;
+}
+
+.bubble-tail {
+  position: absolute;
+  bottom: -12px;
+  left: 28px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 14px solid rgba(255, 255, 255, 0.95);
+  filter: drop-shadow(0 4px 4px rgba(170, 110, 188, 0.1));
+}
+
+.pirouette-sparkle {
+  position: absolute;
+  color: #fff0a8;
+  text-shadow: 0 0 14px rgba(255, 240, 168, 0.9);
+  animation: twinkle 2.4s ease-in-out infinite;
+  font-size: 1.4rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ps-one {
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.ps-two {
+  top: 20%;
+  right: 8%;
+  animation-delay: 0.8s;
+}
+
+.ps-three {
+  bottom: 20%;
+  left: 18%;
+  animation-delay: 1.4s;
+  font-size: 1.1rem;
+}
+
+@keyframes pirouetteFloat {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-14px) rotate(2deg); }
+}
+
+@keyframes bubblePop {
+  from { transform: scale(0.6) translateY(8px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* ── Parent link row ──────────────────────────────── */
+.parent-link-row {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0 8px;
+}
+
+.parent-link {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: rgba(79, 48, 101, 0.45);
+  letter-spacing: 0.02em;
+  transition: color 180ms ease;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+.parent-link:hover {
+  color: rgba(79, 48, 101, 0.72);
+  background: rgba(255, 255, 255, 0.6);
 }
 
 .favorites-panel {

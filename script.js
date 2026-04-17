@@ -1,6 +1,6 @@
 document.querySelectorAll(".activity-card, .button, .nav-chip").forEach((item) => {
   item.addEventListener("pointerdown", () => {
-    item.style.transform = "scale(0.98)";
+    item.style.transform = "scale(0.96)";
   });
 
   const reset = () => {
@@ -11,6 +11,25 @@ document.querySelectorAll(".activity-card, .button, .nav-chip").forEach((item) =
   item.addEventListener("pointerleave", reset);
   item.addEventListener("pointercancel", reset);
 });
+
+// Audio labels — speak card title on tap (touch-first devices)
+if ("speechSynthesis" in window) {
+  document.querySelectorAll(".activity-card").forEach((card) => {
+    card.addEventListener("pointerdown", (e) => {
+      if (e.pointerType !== "touch") return;
+      const titleEl = card.querySelector(".card-title");
+      if (!titleEl) return;
+      const title = titleEl.textContent.trim();
+      if (!title) return;
+      window.speechSynthesis.cancel();
+      const utt = new SpeechSynthesisUtterance(title);
+      utt.rate = 0.9;
+      utt.pitch = 1.2;
+      utt.volume = 1;
+      window.speechSynthesis.speak(utt);
+    });
+  });
+}
 
 if (document.body.classList.contains("page-home")) {
   const sparkleSymbols = ["✦", "✧", "⭐"];
