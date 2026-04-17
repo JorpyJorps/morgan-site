@@ -179,13 +179,22 @@ function renderProgressGarden() {
   renderRecentSessions(sessionEvents);
 }
 
+const progressResetPirouetteButton = document.querySelector("#progress-reset-pirouette-button");
+
 progressRefreshButton.addEventListener("click", renderProgressGarden);
+
 progressClearButton.addEventListener("click", () => {
   if (window.MorganTracker?.clear) {
     window.MorganTracker.clear();
   }
-
   renderProgressGarden();
+});
+
+progressResetPirouetteButton.addEventListener("click", () => {
+  localStorage.removeItem("morgan_pirouette_met_v1");
+  localStorage.removeItem("morgan_pirouette_animal_v1");
+  progressResetPirouetteButton.textContent = "✅ Done — go to Home to re-meet Pirouette!";
+  progressResetPirouetteButton.disabled = true;
 });
 
 renderProgressGarden();
