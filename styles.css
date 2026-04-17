@@ -36,15 +36,30 @@ body {
     linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
 }
 
-.page-home {
-  cursor: none;
-}
+/* Only hide the cursor for real mouse users — touch doesn't need this.
+   Also restore cursor on the first-launch overlay so Morgan isn't stuck. */
+@media (hover: hover) and (pointer: fine) {
+  .page-home {
+    cursor: none;
+  }
 
-.page-home a,
-.page-home button,
-.page-home .activity-card,
-.page-home .button {
-  cursor: none;
+  .page-home a,
+  .page-home button,
+  .page-home .activity-card,
+  .page-home .button {
+    cursor: none;
+  }
+
+  /* Overlay and its children always get a real cursor */
+  .meet-pirouette,
+  .meet-pirouette * {
+    cursor: default !important;
+  }
+
+  .meet-pirouette button,
+  .meet-pirouette .mp-animal-btn {
+    cursor: pointer !important;
+  }
 }
 
 body::before {
