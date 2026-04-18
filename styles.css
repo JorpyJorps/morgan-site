@@ -738,6 +738,11 @@ h2 {
   to   { opacity: 0; }
 }
 
+/* [hidden] gets overridden by display:flex below — be explicit */
+.mp-step[hidden] {
+  display: none !important;
+}
+
 .mp-step {
   display: flex;
   flex-direction: column;
