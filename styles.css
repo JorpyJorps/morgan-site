@@ -856,6 +856,12 @@ h2 {
   .mp-btn       { padding: 14px 28px; font-size: 1.3rem; }
 }
 
+.mp-btn,
+.mp-animal-btn {
+  touch-action: manipulation; /* remove 300ms tap delay on iOS */
+  -webkit-tap-highlight-color: transparent;
+}
+
 .mp-btn {
   display: inline-flex;
   align-items: center;

@@ -60,54 +60,28 @@ if (document.body.classList.contains("page-home")) {
     window.speechSynthesis.speak(utt);
   }
 
-  function showStep(hideEl, showEl, speakText) {
-    hideEl.hidden = true;
-    showEl.hidden = false;
-    // Re-trigger animation
-    showEl.style.animation = "none";
-    showEl.offsetHeight; // reflow
-    showEl.style.animation = "";
-    if (speakText) speak(speakText);
-  }
-
-  function dismissOverlay() {
-    overlay.style.animation = "mpFadeOut 0.5s ease both";
-    overlay.addEventListener("animationend", () => {
-      overlay.hidden = true;
-    }, { once: true });
-  }
-
   // Show overlay if first visit
   if (!localStorage.getItem(MET_KEY)) {
     overlay.hidden = false;
-    speak("Bonjour! I'm Pirouette! Nice to meet you!");
   }
 
-  // Use "click" — works reliably on both mouse and touch, no mobile quirks
   // Step 1 → Step 2
   helloBtn && helloBtn.addEventListener("click", () => {
-    showStep(step1, step2, "What do I look like today?");
+    step1.hidden = true;
+    step2.hidden = false;
   });
 
-  // Step 2 → Step 3 (animal pick)
+  // Step 2: pick animal → save + dismiss immediately (no step 3, no animation)
   document.querySelectorAll(".mp-animal-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const animal = btn.dataset.animal;
       const emoji  = btn.dataset.emoji;
       localStorage.setItem(ANIMAL_KEY, animal);
-      // Update all cats in overlay and home screen
-      [cat1, cat3].forEach(c => { if (c) c.textContent = emoji; });
+      localStorage.setItem(MET_KEY, "true");
       if (pirouetteCat) pirouetteCat.textContent = emoji;
-      showStep(step2, step3, "Allons-y! Let's play!");
+      overlay.hidden = true;
+      document.getElementById("garden-paths")?.scrollIntoView({ behavior: "smooth" });
     });
-  });
-
-  // Step 3 → Dismiss
-  goBtn && goBtn.addEventListener("click", () => {
-    localStorage.setItem(MET_KEY, "true");
-    dismissOverlay();
-    // Scroll to games
-    document.getElementById("garden-paths")?.scrollIntoView({ behavior: "smooth" });
   });
 }
 
