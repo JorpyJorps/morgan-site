@@ -4158,13 +4158,7 @@ h2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .letters-options {
-    grid-template-columns: 1fr;
-  }
-
-  .numbers-options {
-    grid-template-columns: 1fr;
-  }
+  /* letter/number options stay 3-col down to ~480px — removed single-col override */
 
   .top-nav {
     flex-direction: column;
