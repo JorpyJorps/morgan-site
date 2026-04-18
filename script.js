@@ -83,14 +83,15 @@ if (document.body.classList.contains("page-home")) {
     speak("Bonjour! I've been waiting just for you! I'm Pirouette!");
   }
 
+  // Use "click" — works reliably on both mouse and touch, no mobile quirks
   // Step 1 → Step 2
-  helloBtn && helloBtn.addEventListener("pointerdown", () => {
+  helloBtn && helloBtn.addEventListener("click", () => {
     showStep(step1, step2, "What do I look like today?");
   });
 
   // Step 2 → Step 3 (animal pick)
   document.querySelectorAll(".mp-animal-btn").forEach(btn => {
-    btn.addEventListener("pointerdown", () => {
+    btn.addEventListener("click", () => {
       const animal = btn.dataset.animal;
       const emoji  = btn.dataset.emoji;
       localStorage.setItem(ANIMAL_KEY, animal);
@@ -102,7 +103,7 @@ if (document.body.classList.contains("page-home")) {
   });
 
   // Step 3 → Dismiss
-  goBtn && goBtn.addEventListener("pointerdown", () => {
+  goBtn && goBtn.addEventListener("click", () => {
     localStorage.setItem(MET_KEY, "true");
     dismissOverlay();
     // Scroll to games

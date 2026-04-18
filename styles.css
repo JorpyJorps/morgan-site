@@ -715,6 +715,10 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Allow scrolling on short screens so buttons are always reachable */
+  overflow-y: auto;
+  padding: 24px 16px;
+  box-sizing: border-box;
   background: linear-gradient(160deg, #fff0fb 0%, #f0e8ff 50%, #e8f4ff 100%);
   animation: mpFadeIn 0.5s ease both;
 }
@@ -838,6 +842,17 @@ h2 {
 .mp-name strong {
   color: #9c74db;
   font-size: 2.4rem;
+}
+
+/* ── Compact overlay for small phone screens ── */
+@media (max-height: 750px), (max-width: 390px) {
+  .mp-cat       { font-size: 5rem; }
+  .mp-cat-ask   { font-size: 4rem; }
+  .mp-sparkles  { display: none; }   /* hide bg sparkles to save vertical space */
+  .mp-bubble    { padding: 12px 20px; }
+  .mp-name      { font-size: 1.4rem; }
+  .mp-name strong { font-size: 1.8rem; }
+  .mp-btn       { padding: 14px 28px; font-size: 1.3rem; }
 }
 
 .mp-btn {
