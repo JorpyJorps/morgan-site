@@ -28,7 +28,7 @@
             <h1>Letters</h1>
             <p class="letters-subtitle">Find the letter.</p>
           </div>
-          <div class="activity-emoji" aria-hidden="true">🧚✨</div>
+          <div class="activity-emoji" aria-hidden="true">✨🌸</div>
         </section>
 
         <section class="letters-status" aria-label="Letters game progress">
@@ -88,10 +88,18 @@
         <section class="letters-finish" id="letters-finish" hidden>
           <div class="letters-finish-card">
             <div class="letters-celebration" id="letters-celebration" aria-hidden="true">
-              <div class="letters-rainbow-ring"></div>
-              <div class="letters-shooting-star">⭐</div>
-              <div class="letters-confetti letters-confetti-left">✨ 🌸 ⭐ 💖</div>
-              <div class="letters-confetti letters-confetti-right">💖 ⭐ 🌸 ✨</div>
+              <!-- SVG rainbow arc — 7 bands, renders crisply at any size -->
+              <svg class="letters-rainbow-svg" viewBox="0 0 340 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M 8 168 A 162 162 0 0 1 332 168" stroke="#c084fc" stroke-width="20" fill="none" stroke-linecap="round"/>
+                <path d="M 26 168 A 144 144 0 0 1 314 168" stroke="#818cf8" stroke-width="18" fill="none" stroke-linecap="round"/>
+                <path d="M 44 168 A 126 126 0 0 1 296 168" stroke="#38bdf8" stroke-width="18" fill="none" stroke-linecap="round"/>
+                <path d="M 62 168 A 108 108 0 0 1 278 168" stroke="#34d399" stroke-width="18" fill="none" stroke-linecap="round"/>
+                <path d="M 80 168 A 90 90 0 0 1 260 168"  stroke="#fbbf24" stroke-width="18" fill="none" stroke-linecap="round"/>
+                <path d="M 98 168 A 72 72 0 0 1 242 168"  stroke="#fb923c" stroke-width="18" fill="none" stroke-linecap="round"/>
+                <path d="M 116 168 A 54 54 0 0 1 224 168" stroke="#f472b6" stroke-width="18" fill="none" stroke-linecap="round"/>
+              </svg>
+              <!-- Glitter particles are spawned by JS into this container -->
+              <div class="letters-glitter-stage" id="lettersGlitterStage"></div>
             </div>
             <div class="letters-finish-pirouette" aria-hidden="true">
               <div class="gp-bubble gp-finish-bubble">

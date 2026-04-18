@@ -176,9 +176,18 @@ function getBestVoice() {
   return _bestVoice;
 }
 
+const promptTemplates = [
+  (t) => `Find the letter ${t}!`,
+  (t) => `Can you find the letter ${t}?`,
+  (t) => `Where is the letter ${t}?`,
+  (t) => `Tap the letter ${t}!`,
+  (t) => `Show me the letter ${t}!`,
+];
+
 function speakLetterPrompt() {
   const round = letterRounds[lettersRound];
-  const message = `Find the letter ${round.target}.`;
+  const template = promptTemplates[lettersRound % promptTemplates.length];
+  const message = template(round.target);
 
   if (!("speechSynthesis" in window)) {
     lettersFeedbackText.textContent = message;
@@ -251,12 +260,42 @@ function renderLettersRound() {
   });
 }
 
+const glitterEmojis = ["✨", "🌸", "⭐", "💖", "🌟", "🦋", "🌺", "💫", "🎀", "🌷"];
+
+function spawnGlitter() {
+  const stage = document.getElementById("lettersGlitterStage");
+  if (!stage) return;
+  stage.innerHTML = "";
+
+  const count = 28;
+  for (let i = 0; i < count; i++) {
+    const dot = document.createElement("span");
+    dot.className = "glitter-dot";
+    dot.textContent = glitterEmojis[Math.floor(Math.random() * glitterEmojis.length)];
+
+    // Random horizontal position across the card
+    const leftPct = 5 + Math.random() * 90;
+    const drift = Math.round((Math.random() - 0.5) * 80);
+    const spin = Math.round((Math.random() < 0.5 ? 1 : -1) * (180 + Math.random() * 360));
+    const dur = Math.round(900 + Math.random() * 800);
+    const delay = Math.round(Math.random() * 600);
+
+    dot.style.left = `${leftPct}%`;
+    dot.style.setProperty("--drift", `${drift}px`);
+    dot.style.setProperty("--spin", `${spin}deg`);
+    dot.style.setProperty("--dur", `${dur}ms`);
+    dot.style.setProperty("--delay", `${delay}ms`);
+    stage.append(dot);
+  }
+}
+
 function finishLetters() {
   lettersBoard.hidden = true;
   lettersFinish.hidden = false;
   lettersFinishText.textContent = `Morgan found ${lettersScore} magic letters!`;
   lettersCelebration.classList.remove("is-active");
-  setPirouette('celebrate', 'Bravo! You did it! 🎉');
+  spawnGlitter();
+  setPirouette('celebrate', 'Magnifique! 🌟');
   const finishCat = document.getElementById('gpFinishCat');
   if (finishCat) finishCat.textContent = getPirouetteEmoji();
   trackEvent({
@@ -269,7 +308,7 @@ function finishLetters() {
   playLettersFinishSound();
   window.setTimeout(() => {
     lettersCelebration.classList.add("is-active");
-  }, 180);
+  }, 120);
 }
 
 function nextLettersRound() {
