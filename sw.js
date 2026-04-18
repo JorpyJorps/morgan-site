@@ -1,4 +1,4 @@
-const CACHE = 'morgan-garden-v2';
+const CACHE = 'morgan-garden-v3';
 
 const PRECACHE = [
   '/',

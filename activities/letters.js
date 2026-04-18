@@ -151,28 +151,41 @@ function playLettersFinishSound() {
   playTone(783.99, start + 0.72, 0.36, 0.06);
 }
 
-// Pick the warmest available voice. On iOS/macOS "Samantha" is noticeably
-// better than the default; Chrome desktop has "Google US English".
-// We cache the result so we don't scan the list on every prompt.
+// Pick the warmest available voice and log it so we can debug.
 let _bestVoice = null;
 function getBestVoice() {
   if (_bestVoice) return _bestVoice;
   const voices = window.speechSynthesis.getVoices();
   if (!voices.length) return null;
+
+  // Log all voices once so we know what's available
+  console.log('[Pirouette voices]', voices.map(v => `${v.name} | ${v.lang} | local:${v.localService}`).join('\n'));
+
   const preferred = [
-    "Samantha",           // iOS / macOS — warm & clear
-    "Karen",              // macOS alternate
-    "Google US English",  // Chrome desktop — much better than system default
-    "Microsoft Aria Online (Natural)",  // Edge / Windows
-    "Microsoft Zira",     // Windows fallback
+    "Samantha",                   // macOS/iOS — warm, natural
+    "Karen",                      // macOS alternate
+    "Moira",                      // macOS Irish — pleasant
+    "Google US English",          // Chrome desktop
+    "Microsoft Aria Online (Natural) - English (United States)",  // Edge — very good
+    "Microsoft Jenny Online (Natural) - English (United States)", // Edge alternate
+    "Microsoft Aria",             // Edge short name fallback
+    "Microsoft Zira Desktop - English (United States)", // Windows fallback
+    "Microsoft Zira",             // Windows short
   ];
   for (const name of preferred) {
     const match = voices.find((v) => v.name === name);
-    if (match) { _bestVoice = match; return match; }
+    if (match) {
+      console.log('[Pirouette] using voice:', match.name);
+      _bestVoice = match;
+      return match;
+    }
   }
-  // Any en-US voice beats the system default on most platforms
+  // Any local en-US voice (system voices tend to sound better than remote)
+  const localEnUS = voices.find((v) => v.lang === "en-US" && v.localService);
+  // Any en-US voice
   const enUS = voices.find((v) => v.lang === "en-US");
-  _bestVoice = enUS || voices[0] || null;
+  _bestVoice = localEnUS || enUS || voices[0] || null;
+  console.log('[Pirouette] fallback voice:', _bestVoice?.name);
   return _bestVoice;
 }
 
