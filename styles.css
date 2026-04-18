@@ -1178,8 +1178,8 @@ h2 {
   padding: 18px 20px;
   border-radius: 28px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(232, 246, 231, 0.9)),
-    radial-gradient(circle at right, rgba(255, 234, 184, 0.22), transparent 24%);
+    linear-gradient(135deg, rgba(255, 248, 254, 0.96), rgba(242, 234, 255, 0.92)),
+    radial-gradient(circle at right, rgba(255, 210, 240, 0.22), transparent 24%);
   box-shadow: var(--shadow);
 }
 
