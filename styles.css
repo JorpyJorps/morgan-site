@@ -1295,7 +1295,7 @@ h2 {
   border-radius: 36px;
   background:
     radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.92), transparent 18%),
-    linear-gradient(135deg, #fff8fc, #edf9e8, #e8ddff);
+    linear-gradient(135deg, #fff5fb, #f0e8ff, #fce8f5);
   box-shadow: 0 16px 30px rgba(156, 116, 169, 0.18);
   cursor: pointer;
   font-family: "Baloo 2", cursive;
@@ -1520,19 +1520,7 @@ h2 {
   animation-delay: 0.7s;
 }
 
-/* Floating petals — pure CSS, no images */
-.letters-board::after {
-  content: "🌸  🌺  🌷  🌸";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.4rem;
-  letter-spacing: 0.5em;
-  opacity: 0.35;
-  pointer-events: none;
-  white-space: nowrap;
-}
+/* Bottom decoration removed — was cluttering the game board */
 
 .theme-page-unicorn {
   --bg-top: #fff9da;
@@ -4255,12 +4243,32 @@ h2 {
   75%  { transform: rotate(8deg); }
 }
 
-/* Game area layout — Pirouette on the left, content on the right */
+/* Game area layout — Pirouette centered at top, content full-width below */
 .letters-game-area {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 24px;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Pirouette sits as a horizontal row: cat + bubble side by side */
+.game-pirouette {
+  flex-direction: row !important;
+  justify-content: center !important;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Bubble tail points LEFT toward cat when in row layout */
+.letters-board .gp-bubble::after {
+  bottom: auto;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 10px solid transparent;
+  border-right-color: rgba(255,255,255,0.95);
+  border-left: 0;
+  border-bottom: 0;
 }
 
 .letters-game-content {
@@ -4268,15 +4276,16 @@ h2 {
   flex-direction: column;
   align-items: center;
   gap: 0;
+  width: 100%;
 }
 
-/* Options grid stretches full width even when parent is flex-center */
-.letters-game-content .letters-options {
+/* Options grid and feedback stretch full width */
+.letters-game-content .letters-options,
+.letters-game-content .letters-feedback {
   width: 100%;
 }
 
 .letters-game-content .letters-feedback {
-  align-self: stretch;
   justify-content: center;
 }
 
@@ -4356,21 +4365,4 @@ h2 {
   letter-spacing: 0.04em;
 }
 
-@media (max-width: 600px) {
-  .letters-game-area {
-    grid-template-columns: 1fr;
-  }
-  .game-pirouette {
-    flex-direction: row;
-    justify-content: center;
-  }
-  .gp-bubble::after {
-    bottom: auto;
-    left: -10px;
-    top: 50%;
-    transform: translateY(-50%);
-    border: 10px solid transparent;
-    border-right-color: rgba(255,255,255,0.95);
-    border-left: 0;
-  }
-}
+/* letters-game-area is now flex-column on all screen sizes — no mobile override needed */

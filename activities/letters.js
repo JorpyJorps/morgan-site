@@ -204,9 +204,21 @@ function speakLetterPrompt() {
   window.speechSynthesis.speak(utterance);
 }
 
-// Voices load async in some browsers — bust the cache when they arrive
+// Chrome loads voices async — reset cache when they arrive so next speak picks the best one
 if ("speechSynthesis" in window) {
   window.speechSynthesis.addEventListener("voiceschanged", () => { _bestVoice = null; });
+}
+
+// Wrap the initial auto-speak so it waits for voices to load on Chrome
+function speakWhenReady() {
+  if (!("speechSynthesis" in window)) return;
+  const voices = window.speechSynthesis.getVoices();
+  if (voices.length > 0) {
+    speakLetterPrompt();
+  } else {
+    // Chrome: voices arrive via event, not immediately
+    window.speechSynthesis.addEventListener("voiceschanged", speakLetterPrompt, { once: true });
+  }
 }
 
 function resetLettersFeedback() {
@@ -476,5 +488,5 @@ const gpFinishCatInit = document.getElementById('gpFinishCat');
 if (gpFinishCatInit) gpFinishCatInit.textContent = getPirouetteEmoji();
 
 renderLettersRound();
-speakLetterPrompt();
+speakWhenReady();   // waits for voices to load on Chrome before first speak
 setPirouette('idle', 'Find the letter! 🎵');
