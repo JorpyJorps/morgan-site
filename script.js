@@ -80,7 +80,7 @@ if (document.body.classList.contains("page-home")) {
   // Show overlay if first visit
   if (!localStorage.getItem(MET_KEY)) {
     overlay.hidden = false;
-    speak("Bonjour! I've been waiting just for you! I'm Pirouette!");
+    speak("Bonjour! I'm Pirouette! Nice to meet you!");
   }
 
   // Use "click" — works reliably on both mouse and touch, no mobile quirks

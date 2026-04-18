@@ -715,8 +715,9 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Allow scrolling on short screens so buttons are always reachable */
+  /* Allow vertical scrolling on short screens, never horizontal */
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 24px 16px;
   box-sizing: border-box;
   background: linear-gradient(160deg, #fff0fb 0%, #f0e8ff 50%, #e8f4ff 100%);
