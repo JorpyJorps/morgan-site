@@ -138,12 +138,15 @@ function speakShapePrompt() {
     return;
   }
 
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(message);
-  utterance.rate = 0.9;
-  utterance.pitch = 1.14;
-  utterance.volume = 1;
-  window.speechSynthesis.speak(utterance);
+  if (window.MorganVoice) {
+    window.MorganVoice.speak(message, { rate: 0.88, pitch: 1.12 });
+  } else {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(message);
+    utterance.rate = 0.9;
+    utterance.pitch = 1.14;
+    window.speechSynthesis.speak(utterance);
+  }
 }
 
 function resetShapesFeedback() {
@@ -358,4 +361,9 @@ shapesLevelTwoButton.addEventListener("click", () => setShapesLevel("level2"));
 
 shapesRounds = buildShapesRounds();
 renderShapesRound();
-speakShapePrompt();
+// Wait for Chrome's async voice list before auto-speaking
+if ("speechSynthesis" in window && window.speechSynthesis.getVoices().length === 0) {
+  window.speechSynthesis.addEventListener("voiceschanged", speakShapePrompt, { once: true });
+} else {
+  speakShapePrompt();
+}

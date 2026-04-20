@@ -132,12 +132,15 @@ function speakPrompt() {
     return;
   }
 
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(message);
-  utterance.rate = 0.9;
-  utterance.pitch = 1.15;
-  utterance.volume = 1;
-  window.speechSynthesis.speak(utterance);
+  if (window.MorganVoice) {
+    window.MorganVoice.speak(message, { rate: 0.88, pitch: 1.12 });
+  } else {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(message);
+    utterance.rate = 0.9;
+    utterance.pitch = 1.15;
+    window.speechSynthesis.speak(utterance);
+  }
 }
 
 function resetNumbersFeedback() {
@@ -344,4 +347,9 @@ numbersLevelTwoButton.addEventListener("click", () => setNumbersLevel("level2"))
 
 numbersRounds = buildNumbersRounds();
 renderNumbersRound();
-speakPrompt();
+// Wait for Chrome's async voice list before auto-speaking
+if ("speechSynthesis" in window && window.speechSynthesis.getVoices().length === 0) {
+  window.speechSynthesis.addEventListener("voiceschanged", speakPrompt, { once: true });
+} else {
+  speakPrompt();
+}

@@ -151,43 +151,7 @@ function playLettersFinishSound() {
   playTone(783.99, start + 0.72, 0.36, 0.06);
 }
 
-// Pick the warmest available voice and log it so we can debug.
-let _bestVoice = null;
-function getBestVoice() {
-  if (_bestVoice) return _bestVoice;
-  const voices = window.speechSynthesis.getVoices();
-  if (!voices.length) return null;
-
-  // Log all voices once so we know what's available
-  console.log('[Pirouette voices]', voices.map(v => `${v.name} | ${v.lang} | local:${v.localService}`).join('\n'));
-
-  const preferred = [
-    "Samantha",                   // macOS/iOS — warm, natural
-    "Karen",                      // macOS alternate
-    "Moira",                      // macOS Irish — pleasant
-    "Google US English",          // Chrome desktop
-    "Microsoft Aria Online (Natural) - English (United States)",  // Edge — very good
-    "Microsoft Jenny Online (Natural) - English (United States)", // Edge alternate
-    "Microsoft Aria",             // Edge short name fallback
-    "Microsoft Zira Desktop - English (United States)", // Windows fallback
-    "Microsoft Zira",             // Windows short
-  ];
-  for (const name of preferred) {
-    const match = voices.find((v) => v.name === name);
-    if (match) {
-      console.log('[Pirouette] using voice:', match.name);
-      _bestVoice = match;
-      return match;
-    }
-  }
-  // Any local en-US voice (system voices tend to sound better than remote)
-  const localEnUS = voices.find((v) => v.lang === "en-US" && v.localService);
-  // Any en-US voice
-  const enUS = voices.find((v) => v.lang === "en-US");
-  _bestVoice = localEnUS || enUS || voices[0] || null;
-  console.log('[Pirouette] fallback voice:', _bestVoice?.name);
-  return _bestVoice;
-}
+// Voice selection is handled by MorganVoice in tracker.js (loaded before this script)
 
 const promptTemplates = [
   (t) => `Find the letter ${t}!`,
@@ -207,29 +171,23 @@ function speakLetterPrompt() {
     return;
   }
 
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(message);
-  utterance.rate = 0.82;    // a touch slower — easier for a 5-year-old
-  utterance.pitch = 1.1;
-  utterance.volume = 1;
-  const voice = getBestVoice();
-  if (voice) utterance.voice = voice;
-  window.speechSynthesis.speak(utterance);
-}
-
-// Chrome loads voices async — reset cache when they arrive so next speak picks the best one
-if ("speechSynthesis" in window) {
-  window.speechSynthesis.addEventListener("voiceschanged", () => { _bestVoice = null; });
+  if (window.MorganVoice) {
+    window.MorganVoice.speak(message, { rate: 0.82, pitch: 1.1 });
+  } else {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(message);
+    utterance.rate = 0.82;
+    utterance.pitch = 1.1;
+    window.speechSynthesis.speak(utterance);
+  }
 }
 
 // Wrap the initial auto-speak so it waits for voices to load on Chrome
 function speakWhenReady() {
   if (!("speechSynthesis" in window)) return;
-  const voices = window.speechSynthesis.getVoices();
-  if (voices.length > 0) {
+  if (window.speechSynthesis.getVoices().length > 0) {
     speakLetterPrompt();
   } else {
-    // Chrome: voices arrive via event, not immediately
     window.speechSynthesis.addEventListener("voiceschanged", speakLetterPrompt, { once: true });
   }
 }
