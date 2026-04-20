@@ -8,6 +8,7 @@ const backdropButtons = document.querySelectorAll("[data-backdrop]");
 const clearButton = document.querySelector("#art-clear-button");
 const saveButton = document.querySelector("#art-save-button");
 const undoButton = document.querySelector("#art-undo-button");
+const flipButton = document.querySelector("#art-flip-button");
 const colorsGroup = document.querySelector("#art-colors-group");
 const stampsGroup = document.querySelector("#art-stamps-group");
 const stampRow = document.querySelector("#art-stamp-row");
@@ -683,6 +684,9 @@ function drawShapePreview(from, to) {
 }
 
 function handlePointerDown(event) {
+  // Capture pointer so strokes don't break if finger drifts to edge
+  try { canvas.setPointerCapture(event.pointerId); } catch (_) {}
+
   const point = getCanvasPoint(event);
 
   if (currentTool === "stamp") {
@@ -736,6 +740,21 @@ function stopDrawing(event) {
   shapeSnapshot = null;
   context.shadowBlur = 0;
   context.globalAlpha = 1;
+}
+
+function flipCanvas() {
+  saveHistorySnapshot();
+  const temp = document.createElement("canvas");
+  temp.width = canvas.width;
+  temp.height = canvas.height;
+  const tempCtx = temp.getContext("2d");
+  tempCtx.drawImage(canvas, 0, 0);
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  context.save();
+  context.translate(canvas.width, 0);
+  context.scale(-1, 1);
+  context.drawImage(temp, 0, 0);
+  context.restore();
 }
 
 function saveArtwork() {
@@ -808,6 +827,7 @@ clearButton.addEventListener("click", () => {
 });
 saveButton.addEventListener("click", saveArtwork);
 undoButton.addEventListener("click", undoLastAction);
+flipButton.addEventListener("click", flipCanvas);
 
 canvas.addEventListener("pointerdown", handlePointerDown);
 canvas.addEventListener("pointermove", handlePointerMove);
