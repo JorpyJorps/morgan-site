@@ -1768,31 +1768,6 @@ h2 {
   transform: translateY(-2px);
 }
 
-.numbers-count-board {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 14px;
-  max-width: 560px;
-  margin: 20px auto 0;
-  padding: 20px;
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: inset 0 0 0 1px rgba(211, 138, 31, 0.08);
-  position: relative;
-  z-index: 1;
-}
-
-.numbers-count-item {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 72px;
-  border-radius: 22px;
-  background: linear-gradient(135deg, #fff6c8, #fffdf6);
-  font-size: 2.25rem;
-  box-shadow: 0 10px 22px rgba(211, 138, 31, 0.1);
-}
-
 .numbers-feedback {
   display: inline-flex;
   align-items: center;
@@ -4581,3 +4556,170 @@ h2 {
 }
 
 /* letters-game-area is now flex-column on all screen sizes — no mobile override needed */
+
+/* ── Numbers game area — mirrors Letters layout (Star Meadow) ── */
+.numbers-game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.numbers-game-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+}
+
+/* Options grid, count board and feedback stretch full width */
+.numbers-game-content .numbers-options,
+.numbers-game-content .numbers-feedback {
+  width: 100%;
+}
+
+.numbers-game-content .numbers-feedback {
+  justify-content: center;
+}
+
+/* Bubble tail points LEFT toward Pirouette in the row layout */
+.numbers-board .gp-bubble::after {
+  bottom: auto;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 10px solid transparent;
+  border-right-color: rgba(255, 255, 255, 0.95);
+  border-left: 0;
+  border-bottom: 0;
+}
+
+/* Prompt button with icon + label (matches Letters) */
+.numbers-prompt {
+  flex-direction: column;
+  gap: 6px;
+}
+
+.numbers-prompt-icon {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.numbers-prompt-hint {
+  font-family: "Baloo 2", cursive;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #4f3065;
+}
+
+/* Band chips (1–10, 11–20 …) — generated from the NUMBER_BANDS config */
+.numbers-level-chip {
+  font-size: 1.25rem;
+  font-weight: 800;
+  font-family: "Baloo 2", cursive;
+  letter-spacing: 0.02em;
+}
+
+/* ── Ten-frames: teen numbers shown as a full ten + the extra ones ── */
+.numbers-tenframe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.ten-frame {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 6px;
+  padding: 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: inset 0 0 0 2px rgba(211, 138, 31, 0.22), 0 8px 18px rgba(183, 134, 70, 0.12);
+}
+
+.ten-frame-cell {
+  width: 46px;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(255, 250, 232, 0.75);
+  box-shadow: inset 0 0 0 1px rgba(211, 138, 31, 0.14);
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.ten-frame-cell.is-filled {
+  background: linear-gradient(135deg, #fff2ad, #ffe19a);
+  box-shadow: inset 0 0 0 1px rgba(211, 138, 31, 0.28), 0 4px 10px rgba(211, 138, 31, 0.16);
+  animation: tenFramePop 320ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes tenFramePop {
+  0%   { transform: scale(0.4); opacity: 0; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+@media (max-width: 480px) {
+  .ten-frame-cell {
+    width: 38px;
+    height: 38px;
+    font-size: 1.4rem;
+  }
+}
+
+/* ── Finish-screen celebration (mirrors Letters) ── */
+.numbers-finish-card > :not(.numbers-celebration) {
+  position: relative;
+  z-index: 1;
+}
+
+.numbers-celebration {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 32px;
+}
+
+.numbers-rainbow-svg {
+  position: absolute;
+  left: 50%;
+  top: -10px;
+  width: 340px;
+  height: 170px;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center bottom;
+  opacity: 0;
+  overflow: visible;
+}
+
+.numbers-celebration.is-active .numbers-rainbow-svg {
+  animation: rainbowReveal 700ms cubic-bezier(0.34, 1.56, 0.64, 1) 80ms forwards;
+}
+
+.numbers-glitter-stage {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.numbers-finish-pirouette {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}

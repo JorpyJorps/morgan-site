@@ -27,7 +27,9 @@ No build step. Pure static HTML/CSS/JS via `serve`. No framework, no bundler, no
   - Voice priority: Enhanced (iOS downloaded) → Samantha → Karen/Moira → Google US English → Microsoft Aria → fallback
   - Uses partial name matching so "Samantha (Enhanced)" is caught on iOS
 
-**Service Worker:** `sw.js` — network-first, cache fallback. Currently `morgan-garden-v4`. Bump version to force fresh files on devices.
+**Service Worker:** `sw.js` — network-first, cache fallback. Currently `morgan-garden-v5`. Bump version to force fresh files on devices. Precaches the voice clips in `/assets/audio/` (install uses `Promise.allSettled` so a missing file won't abort).
+
+**Voice (pre-recorded):** `scripts/generate-voice.sh` generates Pirouette's clips into `/assets/audio/*.m4a` using the macOS `say` voice (default `Samantha`) + `afconvert`. Free, offline, no accounts. Re-run anytime; upgrade path is to swap `say` for OpenAI TTS / ElevenLabs keeping the same filenames. Numbers uses a local `NumberAudio` helper that plays `num-<n>.m4a` and **falls back to `MorganVoice` (Web Speech)** if a clip is missing/blocked, so audio never fully breaks. (Voice not yet rolled to other games — that's Tier 2.)
 
 **Sticker Garden:** reads `session_complete` events — 1 sticker per completed session, up to 12. Placements saved under `morgan_magic_garden_sticker_garden_v1`.
 
@@ -48,7 +50,7 @@ No build step. Pure static HTML/CSS/JS via `serve`. No framework, no bundler, no
 | Activity | File | Status |
 |---|---|---|
 | Letters | letters.html / letters.js | ✅ Fully rebuilt — Pirouette, SVG rainbow celebration, glitter, voice |
-| Numbers | numbers.html / numbers.js | ⚠️ Functional but old-style — no Pirouette, needs rebuild |
+| Numbers | numbers.html / numbers.js | ✅ Rebuilt — Pirouette, **ten-frames** for teen numbers (11–20), config-driven number bands, pre-recorded voice, rainbow+glitter celebration |
 | Patterns | patterns.html / patterns.js | ⚠️ Functional — Level 1 + 2, mobile fixed, needs Pirouette + Level 3 |
 | Shapes | shapes.html / shapes.js | ⚠️ Functional but old-style — no Pirouette, needs rebuild |
 | Memory Match | memory-match.html / memory-match.js | ⚠️ Functional, old celebration style |
@@ -81,20 +83,38 @@ No build step. Pure static HTML/CSS/JS via `serve`. No framework, no bundler, no
 - Pattern row: `display: flex; flex-wrap: nowrap` so sequence stays one row on mobile
 - All Art Studio tool strips: `flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none`
 
-## Backlog (priority order)
+## Number bands — how Numbers grows (no rebuild needed)
 
-1. **Rebuild Numbers game** — Pirouette, better UX, match Letters quality
-2. **Rebuild Shapes game** — same
-3. **Patterns Level 3** — ABCABC sequences, harder distractors
-4. **Letter sounds / phonics (Level 3)** — "find the letter that says /b/" — needs voice strategy
-5. **French Café world** — hangout/reward zone + match French words to pictures (colors, numbers 1–20, foods, animals, greetings) — Pirouette's home base
-6. **Pirouette outfit unlocks** — earned from any game, applied in French Café
-7. **Colors game** — currently placeholder
-8. **Voice: pre-recorded MP3s** — ElevenLabs or macOS `say` command, one-time generation, best quality for letter sounds + French
+`numbers.js` drives the whole game from a `NUMBER_BANDS` config array at the top:
+`{ id, chip, range: [lo, hi] }`. Each band becomes a chip and uses ten-frames.
+**Adding 21–30, 31–40 … is a one-line config change.** Kindergarten target nuance:
+kids *count* to 100 (by ones and tens) but only *read/write numerals* to 20 — so
+numeral-recognition bands stay in 0–20; "to 100" should later be a separate
+count-by-tens / hundred-chart mode, not more recognition bands.
+
+## Backlog (priority order — refreshed summer 2026)
+
+**Tier 1 — teen numbers (DONE):** ten-frame engine + bands + pre-recorded voice. ✅
+
+**Tier 2 — character + design glow-up (next):**
+1. **One illustrated Pirouette** — commit to a single character (French cat vibe; base on a photo of Morgan's stuffed animal per the bible). Generate via OpenAI image gen: flat vector, transparent bg, 4–5 poses (idle/happy, thinking, celebrating, confused). Drop PNGs in `assets/`, swap the emoji usage. **This replaces the cat-or-penguin choice.**
+2. **Roll pre-recorded voice across the app** — promote `NumberAudio` into a shared helper in `tracker.js`; record letters + letter-sounds + phrases.
+3. **Design polish pass** — consistent type/spacing, real illustrated touches per world.
+
+**Tier 3 — breadth + reward world:**
+4. **Rebuild Shapes** (Pirouette, match Letters/Numbers quality)
+5. **Build Colors** (currently placeholder)
+6. **Letter sounds / phonics (Letters Level 3)** — "find the letter that says /b/" — now feasible with pre-recorded clips
+7. **Patterns Level 3** — ABCABC, harder distractors
+8. **French Café world** + **Pirouette outfit unlocks**
+
+**Other observations to address:**
+- Home grid links to unbuilt pages (Colors, French Café, Build It/Puzzles) → dead ends for a solo 5-yo. Lock/"coming soon" them until built.
+- Parent Review should surface teen-number confusions (it already tracks misses).
 
 ## Key decisions made
 
-- **Voice:** Using Web Speech API with `MorganVoice` in tracker.js for best iOS voice selection. On iPhone: Settings → Accessibility → Spoken Content → Voices → English → download "Samantha (Enhanced)" for best results. Pre-recorded MP3s parked for later.
+- **Voice:** Moving to **pre-recorded clips** (see Voice section above) for core words — best for a speech-delay learner. Numbers already uses them; `MorganVoice` (Web Speech) stays as the automatic fallback. First-pass clips use macOS `say` (Samantha); can upgrade to OpenAI TTS / ElevenLabs later with the same filenames.
 - **No animations gating UI:** Never use `animationend` as the sole trigger to dismiss/show critical elements on mobile — fires unreliably. Use direct DOM state changes.
 - **French Café scope:** Learning game (listen + match French words to pictures) + hangout/reward zone. Vocabulary: colors, numbers 1–20, foods, animals, greetings.
 - **Outfit unlocks:** Earned from any game (not just Café), applied to Pirouette in Café.
